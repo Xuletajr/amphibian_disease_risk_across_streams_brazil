@@ -9,40 +9,42 @@ rm(list=ls(all=TRUE))
 # Check the filepath for the working directory
 getwd()                                                               
 
-################################################
-###         Reading the data
+###############################################
+###  Reading and preparing the data - Summary
 ###############################################
 
 # Bd detection/non-detection matrix
-bd.pres <- read.table("bd_pres.txt", header=T)   
+bd.pres <- read.table("./data/bd_pres.txt", header=T)   
 
 # Bd intesity matrix
-bd.intensity <- read.table("bd_load.txt", header=T)
+bd.intensity <- read.table("./data/bd_load.txt", header=T)
 
-# number of sites sampled
+# Number of sites sampled
 (nsites =  nrow(bd.pres))
 
 # Number of amphibian individuals sampled by site (swab sampled)
 frog_swabbed <- bd.pres
-frog_swabbed[frog_swabbed==0] <- 1
-n.swabbed <- rowSums (frog_swabbed, na.rm = TRUE) # different number of swas for sampling site
+frog_swabbed[frog_swabbed == 0] <- 1
+(n.swabbed <- rowSums (frog_swabbed, na.rm = TRUE)) # different number of swabs for sampling sites
 
 # Summary swabs statistics
-sum(n.swabbed)  # Total number of swabs
-mean(n.swabbed) # Mean for sampling site
-sd(n.swabbed)   # standard deviation for sampling site
+sum(n.swabbed)    # Total number of swabs
+mean(n.swabbed)   # Mean for sampling site
+median(n.swabbed) # Median for sampling site
+sd(n.swabbed)     # standard deviation for sampling site
 
 # Number of infected frogs
 sum(bd.pres, na.rm=T)
 
-# Remove 0s from intensity data and log transform
+# Remove 0s from intensity data
 bd.intensity[bd.intensity == 0] <- NA
 #bd.intensity <- log(bd.intensity)
 
 # Total number of swabs collected
 bd.pres2 <- ifelse(bd.pres == 0, 1, 1)
 sum(bd.pres2, na.rm = TRUE)
-################################################
+
+###############################################
 ###         Aquatic index
 ###############################################
 # We designated a host aquatic index (AI) to each sampled anuran following 
@@ -50,24 +52,24 @@ sum(bd.pres2, na.rm = TRUE)
 # Adapted from: Lips et al. (2003). Ecological traits predict amphibian population declines in Central America
 
 # AI0 - Direct developers
-bd.AI0 <- read.table("bd_AI0.txt", header=T) 
+bd.AI0 <- read.table("./data/bd_AI0.txt", header=T) 
 bd.AI0 <- as.matrix(bd.AI0)
 bd.AI0[is.na(bd.AI0)] <- 0
 
 # AI1 - Species breeding in aquatic habitats but occupying the arboreal stratum 
-bd.AI1 <- read.table("bd_AI1.txt", header=T) 
+bd.AI1 <- read.table("./data/bd_AI1.txt", header=T) 
 bd.AI1 <- as.matrix(bd.AI1)
 bd.AI1[is.na(bd.AI1)] <- 0
 
 # AI2 - Species breeding in aquatic habitats and occupying the margins of streams and other bodies of water
-bd.AI2 <- read.table("bd_AI2.txt", header=T)
+bd.AI2 <- read.table("./data/bd_AI2.txt", header=T)
 bd.AI2 <- as.matrix(bd.AI2)
 bd.AI2[is.na(bd.AI2)] <- 0
 
-################################################
+###############################################
 ###         Julian date
 ###############################################
-(date <- as.matrix(read.table("date_bd.txt", header = T)))
+(date <- as.matrix(read.table("./data/date_bd.txt", header = T)))
 mdate <- mean(date, na.rm=TRUE)
 sddate <- sd(date, na.rm=TRUE)
 date1 <- (date-mdate) / sddate 
@@ -78,7 +80,7 @@ round(date1, digits=4)
 ###         Covariates
 ###############################################
 # Read in the habitat data 
-habitat <- read.table("habitat_covariates.txt", header=TRUE, na.strings=c("NA"))
+habitat <- read.table("./data/habitat_covariates.txt", header=TRUE, na.strings=c("NA"))
 head(habitat)
 
 # Standardize the natural forest cover (buffer radius of 200 m)
