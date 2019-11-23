@@ -1,10 +1,10 @@
-# [Assessing amphibian disease risk across tropical streams while accounting for imperfect pathogen detection]
+# Assessing amphibian disease risk across tropical streams while accounting for imperfect pathogen detection
 
 ### José W. Ribeiro Jr, Tadeu Siqueira, Graziella V. DiRenzo, Carolina Lambertini, Mariana L. Lyra, Luís F. Toledo, Célio F. B. Haddad, C. Guilherme Becker
 
-### Oecologia
+### Oecologia (submitted)
 
-### Code DOI
+### Code DOI:
 
 ### Please contact the first author for questions about the code or data: José W. Ribeiro Jr (jwribeirojunior@gmail.com)
 __________________________________________________________________________________________________________________________________________
