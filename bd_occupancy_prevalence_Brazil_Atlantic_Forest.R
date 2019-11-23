@@ -3,13 +3,6 @@
 #####  Bd occupancy and prevalence in the Brazil's Atlantic Forest 
 #############################################################################
 
-# Clear memory
-rm(list=ls(all=TRUE))
-# Set a folder
-setwd("C:/Users/xulet/OneDrive/Publications/Ribeiro_etal_2019_Bd_occupancy/Oecologia/Revision.01/Analysis")
-# Check the filepath for the working directory
-getwd()                                                               
-
 ################################################
 ###         Reading the data
 ###############################################
