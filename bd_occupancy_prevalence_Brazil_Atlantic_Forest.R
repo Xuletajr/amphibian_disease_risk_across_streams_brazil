@@ -1,9 +1,9 @@
 #############################################################################
-#####          Bd real data with covariates - Jose
-#####  Bd occupancy and prevalence in the Brazil's Atlantic Forest 
+#####               Bd real data with covariates - Jose                  ####
+#####    Bd occupancy and prevalence in the Brazil's Atlantic Forest     ####
 #############################################################################
 
-################################################
+###############################################
 ###         Reading the data
 ###############################################
 
