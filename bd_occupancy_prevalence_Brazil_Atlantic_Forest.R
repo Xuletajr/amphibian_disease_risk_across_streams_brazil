@@ -3,7 +3,13 @@
 #####    Bd occupancy and prevalence in the Brazil's Atlantic Forest     ####
 #############################################################################
 
-###############################################
+# Clear memory
+rm(list=ls(all=TRUE))
+
+# Check the filepath for the working directory
+getwd()                                                               
+
+################################################
 ###         Reading the data
 ###############################################
 
@@ -211,7 +217,7 @@ cat("
     
     # Bd Infection intensity across sites
     
-    mu[j] <-  n0 + n1 * forest1[j] + n2 * ric1[j]
+    mu[j] <-  n0 + n1 * forest1[j] + n2 * hydro1[j]
     
     mu_z[j] <- mu[j] * z[j]
     
@@ -223,7 +229,7 @@ cat("
     
     # Describes the relationship of prob. Bd infection and aquatic index, forest cover, and date    
     logit(p[j, k]) <- beta + b0 * bd.AI0[j, k] + b1 * bd.AI1[j, k] + b2 * bd.AI2[j, k] + 
-    b3 * forest[j] + b4 * date1[j, k] + b5 * date2[j, k]
+    b3 * forest1[j] + b4 * date1[j, k] + b5 * date2[j, k]
     
     mu_inf[j, k] <- p[j, k] * z[j] # There has to be Bd at a site to calculate prob. of infection
     
@@ -351,7 +357,7 @@ sp.inits = function (){ list(
 }
 
 # MCMC test settings
-ni <- 55000; nt <- 50; nb <- 5000; nc <- 3; na = 50000
+ni <- 55000; nt <- 50; nb <- 5000; nc <- 3; na = 100000
 
 #Load the R2Jags library
 library(jagsUI)
@@ -362,9 +368,10 @@ out5 <- jags(data = sp.data, inits = sp.inits, parameters.to.save = sp.params,
              n.burnin = nb, parallel = TRUE, store.data = TRUE, n.adapt = na)
 
 # Look at output
-out1
+out5
 
 # Look at traceplots of output
-plot(out1)
+plot(out5)
 
-traceplot(out1)
+traceplot(out5)
+#
