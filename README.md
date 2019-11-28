@@ -43,4 +43,4 @@ habitat_covariates.txt - contains habitat covariate information for each site.
 ## Codes
 __*bd_occupancy_prevalence_Brazil_Atlantic_Forest.R*__ - R code to run hierarchical Bayesian model to estimate *Bd* occurrence, prevalence, and infection intensity. Contains code to import and reshape the data, summary statistics, and run the model file in JAGS.
 
-__*coutput_frogBd_17_may_2019.R*__ - 
+__*output_frogBd_17_may_2019.R*__ - 
