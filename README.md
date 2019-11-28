@@ -11,6 +11,18 @@ ________________________________________________________________________________
 ## Abstract:
 Ecologists studying emerging wildlife diseases need to confront the realism of imperfect pathogen detection across heterogeneous habitats to enhance conservation actions. For example, spatial risk assessments of amphibian disease caused by Batrachochytrium dendrobatidis (Bd) has largely ignored imperfect detection across sampling sites. Because changes in pathogenicity and host susceptibility could trigger recurrent population declines, it is imperative to understand how pathogen prevalence and occupancy vary across environmental gradients. We assessed how Bd occurrence, prevalence, and infection intensity in a diverse Neotropical landscape vary across streams in relation to abiotic and biotic predictors using a hierarchical Bayesian model that accounts for imperfect Bd detection caused by qPCR error. Our model indicated that the number of streams harboring Bd-infected frogs is higher than observed, with Bd likely being present at 55% more streams than it was detected. We found that terrestrial-breeders captured along streams had higher infection prevalence, but lower infection intensity, than aquatic-breeding species. We found a positive relationship between Bd occupancy and stream density, and a negative relationship between Bd occupancy and amphibian richness. Forest cover was a weak predictor of Bd prevalence and intensity. Lastly, we provide estimates for the minimum sampling effort needed to detect Bd in a given sampling site where Bd occurs, guiding cost-effective disease risk monitoring programs. Our study underscores that hierarchical Bayesian models that account for pathogen uncertainty in pathogen detection grant more precise estimations of occurrence, prevalence, and infection intensity, and evaluating the role of abiotic and biotic variables on pathogen spatial distributions.
 
+### *Bd* presence
+
+### *Bd* load
+
+### Aquatic index
+__*bd_AI0.txt*__ -
+
+__*bd_AI0.txt*__ - 
+
+__*bd_AI0.txt*__ - 
+
+
 ## Data
 ### Habitat covariates
 habitat_covariates.txt - contains habitat covariate information for each site. 
@@ -24,14 +36,7 @@ habitat_covariates.txt - contains habitat covariate information for each site.
 8. __“ric.mean”__ - estimates of amphibian species richness published by Ribeiro et al. (2018) − a study carried out in the same focal streams at the same time as the present study − as a fine-scale measure of local amphibian diversity. 
 9. __“edge_forest”__ - is the forest edge (m) within a buffer of 200 m radius
 
-### Aquatic index
-__*bd_AI0.txt*__ -
-__*bd_AI0.txt*__ - 
-__*bd_AI0.txt*__ - 
-
 ## Codes
 __*bd_occupancy_prevalence_Brazil_Atlantic_Forest.R*__ - R code to run hierarchical Bayesian model to estimate *Bd* occurrence, prevalence, and infection intensity. Contains code to import and reshape the data, summary statistics, and run the model file in JAGS.
 
 __*coutput_frogBd_17_may_2019.R*__ - 
-
-
