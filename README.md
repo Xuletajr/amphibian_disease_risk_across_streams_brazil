@@ -24,8 +24,13 @@ habitat_covariates.txt - contains habitat covariate information for each site.
 8. __“ric.mean”__ - estimates of amphibian species richness published by Ribeiro et al. (2018) − a study carried out in the same focal streams at the same time as the present study − as a fine-scale measure of local amphibian diversity. 
 9. __“edge_forest”__ - is the forest edge (m) within a buffer of 200 m radius
 
+### Aquatic index
+__*bd_AI0.txt*__ -
+__*bd_AI0.txt*__ - 
+__*bd_AI0.txt*__ - 
+
 ## Codes
-__*bd_occupancy_prevalence_Brazil_Atlantic_Forest.R*__ - R code to run the hierarchical community occupancy model for amphibian in Brazil’s Atlantic Forest streams. Contains code to import and reshape the data and run the model file in JAGS.
+__*bd_occupancy_prevalence_Brazil_Atlantic_Forest.R*__ - R code to run hierarchical Bayesian model to estimate *Bd* occurrence, prevalence, and infection intensity. Contains code to import and reshape the data, summary statistics, and run the model file in JAGS.
 
 __*coutput_frogBd_17_may_2019.R*__ - 
 
