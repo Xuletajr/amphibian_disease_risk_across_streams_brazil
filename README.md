@@ -14,12 +14,19 @@ Ecologists studying emerging wildlife diseases need to confront the realism of i
 ## Data
 ### Habitat covariates
 habitat_covariates.txt - contains habitat covariate information for each site. 
-1. "stream" - contains sampling site id
-2. "long" - is the geographic longitude coordinate as UTM
-3. "lat" - is the geographic latitude coordinate as UTM
-4. "altitude" - altitude of each site
-5. "forest" - is the proportion of natural forest cover area within a buffer of 200 m radius
-6. "stream_length" - is the stream length network (m) within a buffer of 200 m radius
-7. “slope200_sd” - is the standard deviation slope within a buffer of 200 m radius, it was derived from the Digital Elevation Model raster image (30-m resolution) from Shuttle Radar Topography Mission (SRTM).
-8. “ric.mean” - 
-9. “edge_forest” - 
+1. __"stream"__ - contains sampling site id
+2. __"long"__ - is the geographic longitude coordinate as UTM
+3. __"lat"__ - is the geographic latitude coordinate as UTM
+4. __"altitude"__ - altitude of each site
+5. __"forest"__ - is the proportion of natural forest cover area within a buffer of 200 m radius
+6. __"stream_length"__ - is the stream length network (m) within a buffer of 200 m radius
+7. __“slope200_sd”__ - is the standard deviation slope within a buffer of 200 m radius, it was derived from the Digital Elevation Model raster image (30-m resolution) from Shuttle Radar Topography Mission (SRTM).
+8. __“ric.mean”__ - 
+9. __“edge_forest”__ - 
+
+## Codes
+__*bd_occupancy_prevalence_Brazil_Atlantic_Forest.R*__ - R code to run the hierarchical community occupancy model for amphibian in Brazil’s Atlantic Forest streams. Contains code to import and reshape the data and run the model file in JAGS.
+
+__*coutput_frogBd_17_may_2019.R*__ - 
+
+
