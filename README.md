@@ -21,8 +21,8 @@ habitat_covariates.txt - contains habitat covariate information for each site.
 5. __"forest"__ - is the proportion of natural forest cover area within a buffer of 200 m radius
 6. __"stream_length"__ - is the stream length network (m) within a buffer of 200 m radius
 7. __“slope200_sd”__ - is the standard deviation slope within a buffer of 200 m radius, it was derived from the Digital Elevation Model raster image (30-m resolution) from Shuttle Radar Topography Mission (SRTM).
-8. __“ric.mean”__ - 
-9. __“edge_forest”__ - 
+8. __“ric.mean”__ - estimates of amphibian species richness published by Ribeiro et al. (2018) − a study carried out in the same focal streams at the same time as the present study − as a fine-scale measure of local amphibian diversity. 
+9. __“edge_forest”__ - is the forest edge (m) within a buffer of 200 m radius
 
 ## Codes
 __*bd_occupancy_prevalence_Brazil_Atlantic_Forest.R*__ - R code to run the hierarchical community occupancy model for amphibian in Brazil’s Atlantic Forest streams. Contains code to import and reshape the data and run the model file in JAGS.
