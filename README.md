@@ -42,6 +42,11 @@ habitat_covariates.txt - contains habitat covariate information for each site.
 9. __“edge_forest”__ - is the forest edge (m) within a buffer of 200 m radius
 
 ## Codes
-__*bd_occupancy_prevalence_Brazil_Atlantic_Forest.R*__ - R code to run hierarchical Bayesian model to estimate *Bd* occurrence, prevalence, and infection intensity. Contains code to import and reshape the data, summary statistics, and run the model file in JAGS.
+__*bd_occupancy_prevalence_Brazil_Atlantic_Forest.R*__ - R code to run hierarchical Bayesian model (Miller et al. 2012, DiRenzo et al. 2018) to estimate *Bd* occurrence, prevalence, and infection intensity. Contains code to import and reshape the data, summary statistics, and run the model file in JAGS.
 
 __*output_frogBd_17_may_2019.R*__ - 
+
+## References
+- DiRenzo GV, Grant EHC, Longo AV, et al (2018) Imperfect pathogen detection from non-invasive skin swabs biases disease inference. Methods Ecol Evol 9:380–389. doi: 10.1111/2041-210X.12868
+- Miller DAW, Talley BL, Lips KR, Campbell Grant EH (2012) Estimating patterns and drivers of infection prevalence and intensity when detection is imperfect and sampling error occurs. Methods Ecol Evol 3:850–859. doi: 10.1111/j.2041-210X.2012.00216.x
+- Ribeiro JW, Siqueira T, Brejão GL, Zipkin EF (2018) Effects of agriculture and topography on tropical amphibian species and communities. Ecol Appl 28:1554–1564. doi: 10.1002/eap.1741
