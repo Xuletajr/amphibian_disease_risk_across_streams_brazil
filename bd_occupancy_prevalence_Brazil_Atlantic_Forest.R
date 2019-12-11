@@ -107,7 +107,7 @@ mric <- mean(ric, na.rm=TRUE)
 sdric <- sd(ric, na.rm=TRUE)
 ric1 <- as.vector( (ric-mric) / sdric )
 
-# Standardize
+# Standardize forest edge 
 edge <- as.vector (habitat$edge_forest)
 medge <- mean(edge, na.rm=TRUE)
 sdedge <- sd(edge, na.rm=TRUE)
