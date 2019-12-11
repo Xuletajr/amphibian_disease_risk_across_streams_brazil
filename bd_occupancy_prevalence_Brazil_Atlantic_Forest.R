@@ -159,7 +159,7 @@ tiff(
 pairs(newdat, 
       upper.panel = panel.cor, 
       diag.panel = panel.hist,
-      lower.panel = panel.lower)
+      lower.panel = panel.lower, cex.axis = 2)
 
 dev.off()
 
