@@ -184,8 +184,6 @@ cat("
     b1 ~ dnorm (0,0.368)   # species breeding in aquatic habitats but occupying the arboreal stratum
     b2 ~ dnorm (0,0.368)   # species breeding in aquatic habitats and occupying the margins of streams and other bodies of water
     b3 ~ dnorm (0,0.368)   # Forest cover
-    b4 ~ dnorm (0,0.368)   # Date - linear
-    b5 ~ dnorm (0,0.368)   # Date - quadratic
     
     # Mean infection intensity (x) of each site
     n0 ~ dnorm(0, 0.01)  # Intercept
@@ -234,7 +232,7 @@ cat("
     
     # Describes the relationship of prob. Bd infection and aquatic index, forest cover, and date    
     logit(p[j, k]) <- beta + b0 * bd.AI0[j, k] + b1 * bd.AI1[j, k] + b2 * bd.AI2[j, k] + 
-    b3 * forest1[j] + b4 * date1[j, k] + b5 * date2[j, k]
+    b3 * forest1[j]
     
     mu_inf[j, k] <- p[j, k] * z[j] # There has to be Bd at a site to calculate prob. of infection
     
@@ -281,11 +279,13 @@ cat("
     Ncols1[j] <- mean(N[j,n.swabbed[j]] * bd.AI1[j,n.swabbed[j]])
     Ncols2[j] <- mean(N[j,n.swabbed[j]] * bd.AI2[j,n.swabbed[j]])
     }
+
     int.AI0 <- mean(Ncols0[])
     int.AI1 <- mean(Ncols1[])
     int.AI2 <- mean(Ncols2[])
     # Finish writing the text file into a document called model
     }
+
     ", fill = TRUE)
 sink()
 
@@ -299,8 +299,6 @@ sp.data = list (nsites = nsites,        # Number of sites
                 bd.AI0 = bd.AI0,  # AI = 0
                 bd.AI1 = bd.AI1,  # AI = 1
                 bd.AI2 = bd.AI2,  # AI = 2
-                date1 = date1,    # date
-                date2 = date2,    # date squared
                 observed = bd.pres, # site x frog matrix with Bd presence/absence
                 w = log(bd.intensity) # site x frog matrix with Bd infection intensity
 )
@@ -310,7 +308,7 @@ sp.params = c("mean.occ", "occ.rate",
               "mean.x", "mean.N", "mean.w",
               "int.AI0", "int.AI1", "int.AI2",
               "a0", "a1", "a2", "a3",
-              "beta", "b0", "b1", "b2", "b3", "b4", "b5",
+              "beta", "b0", "b1", "b2", "b3",
               "prev.AI0", "prev.AI1", "prev.AI2",
               "sd.p", "sd", "sd.var",
               "n0", "n1", "n2"
