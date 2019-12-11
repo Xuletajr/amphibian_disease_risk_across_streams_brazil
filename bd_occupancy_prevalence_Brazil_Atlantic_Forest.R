@@ -147,12 +147,12 @@ newdat <- data.frame(species_rich = ric1, slope = slope1,
 dir.create("output_figures")
 
 # Pairs correlation plot 
-tiff(
-  "./output_figures/pairs_correlation_plot.tiff",
+png(
+  "./output_figures/pairs_correlation_plot.png",
   width     = 5,
   height    = 5,
   units     = "in",
-  res       = 600,
+  res       = 900,
   pointsize = 5.5
 )
 
