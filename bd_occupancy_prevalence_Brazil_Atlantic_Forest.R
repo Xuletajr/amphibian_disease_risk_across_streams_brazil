@@ -366,15 +366,15 @@ ni <- 55000; nt <- 50; nb <- 5000; nc <- 3; na = 100000
 library(jagsUI)
 
 #Run the model and call the results out (around 6.7 minutes)
-out5 <- jags(data = sp.data, inits = sp.inits, parameters.to.save = sp.params, 
-             model = "Frog_Bd_BAF5.txt", n.chains = nc, n.thin = nt, n.iter = ni, 
+out_bd <- jags(data = sp.data, inits = sp.inits, parameters.to.save = sp.params, 
+             model = "Frog_Bd_BAF.txt", n.chains = nc, n.thin = nt, n.iter = ni, 
              n.burnin = nb, parallel = TRUE, store.data = TRUE, n.adapt = na)
 
 # Look at output
-out5
+out_bd
 
 # Look at traceplots of output
-plot(out5)
+plot(out_bd)
 
-traceplot(out5)
+traceplot(out_bd)
 #
