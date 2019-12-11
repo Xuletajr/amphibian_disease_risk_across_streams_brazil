@@ -143,13 +143,16 @@ panel.lower <- function(x, y, ...){
 newdat <- data.frame(species_rich = ric1, slope = slope1, 
                      Stream_density = hydro1, forest = forest1, edge = edge1)
 
+# Create directory for figures
+dir.create("output_figures")
+
 # Pairs correlation plot 
 tiff(
-  "fig02.tiff",
+  "./output_figures/pairs_correlation_plot.tiff",
   width     = 5,
   height    = 5,
   units     = "in",
-  res       = 900,
+  res       = 600,
   pointsize = 5.5
 )
 
