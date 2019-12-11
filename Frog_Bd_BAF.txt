@@ -1,0 +1,122 @@
+
+    model{
+    
+    ####################
+    # Define priors
+    ####################
+    
+    # Ocupancy covariate paramaters (psi)
+    a0 ~ dnorm (0, 0.368)    # Intercept  
+    a1 ~ dnorm (0, 0.368)    # Forest cover
+    a2 ~ dnorm (0, 0.368)    # Hydrography density
+    a3 ~ dnorm (0, 0.368)    # Anuran richness
+    
+    # Probability of infection covariate paramaters (p)
+    beta ~ dnorm(0, 0.368) # Intercept for prevalence model
+    b0 ~ dnorm (0,0.368)   # direct developers
+    b1 ~ dnorm (0,0.368)   # species breeding in aquatic habitats but occupying the arboreal stratum
+    b2 ~ dnorm (0,0.368)   # species breeding in aquatic habitats and occupying the margins of streams and other bodies of water
+    b3 ~ dnorm (0,0.368)   # Forest cover
+    
+    # Mean infection intensity (x) of each site
+    n0 ~ dnorm(0, 0.01)  # Intercept
+    n1 ~ dnorm(0, 0.01)  # Forest cover 
+    n2 ~ dnorm(0, 0.01)  # Stream density
+    
+    # Variation in infection intensity across sites
+    tau <- 1/ (sd*sd)
+    sd ~ dunif(0.001, 5)
+    
+    # Variation in infection intensity at each site
+    tau.var <- 1/ (sd.var*sd.var)
+    sd.var ~ dunif(0.001, 5)
+    
+    # Detection probability of Bd (informative priors by Miller et al. 2012)
+    alpha_p ~ dunif(0.25, 1.32)
+    beta_p ~ dunif(0.14, 0.51)
+    
+    # Measurement error of infection intensity
+    tau.p <- 1/ (sd.p * sd.p)
+    sd.p ~ dunif(1.47, 1.97)
+    
+    ##################################
+    # Ecological model likelihood
+    ##################################
+    
+    # Bd occupancy probability across sites  
+    
+    for(j in 1:nsites){  # For each site
+    
+    logit(psi[j]) <- a0 + a1 * forest1[j] + a2 * hydro1[j] + a3 * ric1[j]
+    
+    z[j] ~ dbern(psi[j])  # Bd occupancy probability across sites  
+    
+    # Bd Infection intensity across sites
+    
+    mu[j] <-  n0 + n1 * forest1[j] + n2 * hydro1[j]
+    
+    mu_z[j] <- mu[j] * z[j]
+    
+    x[j] ~ dnorm(mu[j], tau) # Mean Bd infection intensity at site-level
+    
+    for (k in 1:n.swabbed[j]){   # Different number of frogs sampled (swabbed) at each site j
+    
+    # Probability of Bd infection at each site
+    
+    # Describes the relationship of prob. Bd infection and aquatic index, forest cover, and date    
+    logit(p[j, k]) <- beta + b0 * bd.AI0[j, k] + b1 * bd.AI1[j, k] + b2 * bd.AI2[j, k] + 
+    b3 * forest1[j]
+    
+    mu_inf[j, k] <- p[j, k] * z[j] # There has to be Bd at a site to calculate prob. of infection
+    
+    detections[j, k] ~ dbern(mu_inf[j, k])  # Corrected Bd detections
+    
+    ##################################
+    # Sampling model likelihood
+    ##################################   
+    
+    observed[j,k] ~ dbern(p.eff[j,k])  # Observed Bd detections
+    
+    p.eff[j,k] <- path_p[j,k] * detections[j,k]
+    
+    logit(path_p[j,k]) <- alpha_p + beta_p * N[j,k]
+    # At the individual scale- correct for imperfect pathogen detection by Miller et al. 2012
+    # Bd detection probability depends on infection intensity N[j,k]
+    
+    # Variation in infection intensity at each site
+    N[j,k] ~ dnorm(mu_x[j,k], tau.var)   # Corrected Bd infection intensity
+    mu_x[j,k] <- x[j] * z[j]
+    
+    w[j,k] ~ dnorm(mu_N[j,k], tau.p)  # Observed Bd infection intensity
+    mu_N[j,k] <- N[j,k] * observed[j,k]
+    # Correct for measurement error in estimates
+    # If we had the data, w would have a 3rd dimension with replicate qPCR or swabs, then this would be used to calculate the true value of Bd infection intensity per individual at each site (N[j,k])
+    
+    } #k
+    
+    } #j
+    
+    ##################################
+    # Derived quantities
+    ################################## 
+    # Absence/presence
+    mean.occ  <- sum(z[])                           # number of occupied sites by Bd
+    occ.rate <- exp(a0) / (1 + exp(a0))                 # average occupancy probability
+    prev.AI0 <- exp(beta + b0) / (1 + exp(beta + b0))   # prevalence of terrestrial breeding species
+    prev.AI1 <- exp(beta + b1) / (1 + exp(beta + b1))   # prevalence of species breeding in aquatic habitats but occupying the arboreal
+    prev.AI2 <- exp(beta + b2) / (1 + exp(beta + b2))   # prevalence of species breeding in aquatic habitats and occupying the margins of streams and other bodies of water
+    
+    # Infection intensity
+    for(j in 1:nsites){
+    Ncols0[j] <- mean(N[j,n.swabbed[j]] * bd.AI0[j,n.swabbed[j]])
+    Ncols1[j] <- mean(N[j,n.swabbed[j]] * bd.AI1[j,n.swabbed[j]])
+    Ncols2[j] <- mean(N[j,n.swabbed[j]] * bd.AI2[j,n.swabbed[j]])
+    }
+
+    int.AI0 <- mean(Ncols0[])
+    int.AI1 <- mean(Ncols1[])
+    int.AI2 <- mean(Ncols2[])
+    # Finish writing the text file into a document called model
+    }
+
+    

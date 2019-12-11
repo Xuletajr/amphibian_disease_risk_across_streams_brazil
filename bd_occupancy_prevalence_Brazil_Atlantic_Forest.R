@@ -164,7 +164,7 @@ pairs(newdat,
 dev.off()
 
 # Write the model code to a text file 
-sink("Frog_Bd_BAF5.txt")
+sink("Frog_Bd_BAF.txt")
 cat("
     model{
     
