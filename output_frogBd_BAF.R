@@ -36,30 +36,6 @@ abline(v=out_bd$mean$mean.occ, lwd = 3, lty=2, col="red")
 
 dat.occ <- data.frame (p = out_bd$sims.list$mean.occ)
 
-# Figure 2 Draft
-#tiff(
-#  "figX.tiff",
-#  width     = 5,
-#  height    = 4,
-#  units     = "in",
-#  res       = 600,
-#  pointsize = 4
-#) 
-
-#ggplot(dat.occ, aes(x=p)) + 
-#  geom_histogram(color="black", fill="white", binwidth=1) + 
-#  xlab("Number of streams occupied by infected amphibians") + 
-#  ylab("Count of the posterior distribution") +
-#  geom_vline(aes(xintercept= 26), color = "black", linetype = "dotted", size=1) +
-#  geom_vline(aes(xintercept= mean(p)), color = "black", linetype = "dashed", size=1)+
-#  geom_vline(aes(xintercept= quantile(dat.occ, 2, prob = 0.025)), color = "black", linetype = "twodash", size=1)+
-#  geom_vline(aes(xintercept= quantile(dat.occ, 2, prob = 0.975)), color = "black", linetype = "twodash", size=1)+
-#  theme(axis.text.x = element_text(size = 12, color = "black"), 
-#        axis.text.y = element_text(size = 12, color = "black"),
-#        axis.title = element_text(color="black", size=12, face="bold")) 
-
-#dev.off()
-
 #####
 ### Occupancy probability
 round(mean(plogis(out_bd$sims.list$a0)),  3)
@@ -238,7 +214,7 @@ dev.off()
 ######### Prevalence model output
 ######### ######### ######### ######### ######### 
 # Naive Bd prevalence within a stream
-bd.intensity1 <- read.table("bd_load.txt", header=T)
+bd.intensity1 <- read.table("./data/bd_load.txt", header=T)
 bd.intensity1[bd.intensity1 > 0] <- 1
 
 frog_swabbed <- bd.intensity1
@@ -594,4 +570,4 @@ ggplot(dat5b, aes(x=samples, y=y, colour=group, group=group,  pch=group)) +
 
 dev.off()
 
-##### ##### ##### ##### End of the script ##### ##### ##### #####
+######   end----
