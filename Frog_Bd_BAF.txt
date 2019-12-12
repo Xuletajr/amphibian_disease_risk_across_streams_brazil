@@ -98,11 +98,11 @@
     # Derived quantities
     ################################## 
     # Absence/presence
-    mean.occ  <- sum(z[])                           # number of occupied sites by Bd
-    occ.rate <- exp(a0) / (1 + exp(a0))                 # average occupancy probability
-    prev.AI0 <- exp(beta + b0) / (1 + exp(beta + b0))   # prevalence of terrestrial breeding species
-    prev.AI1 <- exp(beta + b1) / (1 + exp(beta + b1))   # prevalence of species breeding in aquatic habitats but occupying the arboreal
-    prev.AI2 <- exp(beta + b2) / (1 + exp(beta + b2))   # prevalence of species breeding in aquatic habitats and occupying the margins of streams and other bodies of water
+    mean.occ  <- sum(z[])                 # number of occupied sites by Bd
+    occ.rate <- exp(a0) / (1 + exp(a0))   # average occupancy probability
+    prev.AI0 <- exp(b0) / (1 + exp(b0))   # prevalence of terrestrial breeding species
+    prev.AI1 <- exp(b1) / (1 + exp(b1))   # prevalence of species breeding in aquatic habitats but occupying the arboreal
+    prev.AI2 <- exp(b2) / (1 + exp(b2))   # prevalence of species breeding in aquatic habitats and occupying the margins of streams and other bodies of water
     
     # Infection intensity
     for(j in 1:nsites){
