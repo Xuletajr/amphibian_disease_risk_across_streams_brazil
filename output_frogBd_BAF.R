@@ -105,10 +105,9 @@ dat2 <- data.frame(occ.mean = c(occ.mean[,2], occ.mean[,1],  occ.mean[,3]),
                                                    "Amphibian richness")))
 dat2
 
-
 # Figure 2 Draft
 tiff(
-  "fig02e.tiff",
+  "./output_figures/fig02.tiff",
   width     = 6.5,
   height    = 3,
   units     = "in",
@@ -126,8 +125,8 @@ ggplot(dat2, aes(cov.seq, occ.mean)) +
   theme_bw () +
   theme(legend.position="none") +
   labs(x = "", y = "") +
-  theme(axis.text.x = element_text(size = 12, color = "white"), 
-        axis.text.y = element_text(size = 12, color = "white"), 
+  theme(axis.text.x = element_text(size = 12, angle = 45), 
+        axis.text.y = element_text(size = 12), 
         legend.title = element_text(size = 12, color = "black"),
         legend.text = element_text(size = 12, color = "black"),
         panel.grid.major = element_blank(), 
