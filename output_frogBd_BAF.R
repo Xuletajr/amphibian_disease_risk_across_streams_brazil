@@ -95,15 +95,90 @@ for(i in 1:nsamp){
 (occ.ci <- apply(pred.occ, c(1,3), function(x) quantile(x,prob=c(0.025,0.975))))
 
 # Putting all data in data frame
-dat2 <- data.frame(occ.mean = c(occ.mean[,2], occ.mean[,1],  occ.mean[,3]),
-                   cov.seq = c(original.hydro.pred, original.for.pred, 
-                               original.ric.pred),
-                   LL = c(occ.ci[1,,2], occ.ci[1,,1], occ.ci[1,,3]),
-                   UL = c(occ.ci[2,,2], occ.ci[2,,1], occ.ci[2,,3]),
+dat2.1 <- data.frame(occ.mean = occ.mean[,2],
+                   cov.seq = original.hydro.pred,
+                   LL = occ.ci[1,,2],
+                   UL = occ.ci[2,,2],
+                   covariates = factor(rep("Stream density", 50 )))
+                   ,
                    covariates  = factor(rep(1:3, each = 50), levels = 1:3, 
                                         labels = c("Stream density", "Forest cover", 
                                                    "Amphibian richness")))
-dat2
+dat2.1
+
+dat2.2 <- data.frame(occ.mean = occ.mean[,1],
+                     cov.seq = original.for.pred,
+                     LL =  occ.ci[1,,1],
+                     UL =  occ.ci[2,,1],
+                     covariates = factor(rep("Forest cover", 50 )))
+                     
+dat2.2                                                     
+                                                                                                        
+
+dat2.3 <- data.frame(occ.mean = occ.mean[,3],
+                     cov.seq =  original.ric.pred,
+                     LL = occ.ci[1,,3],
+                     UL = occ.ci[2,,3],
+                     covariates  = factor(rep("Amphibian richness", 50 ))) 
+                                         
+dat2.3
+
+# Preparing plot for stream density. 
+(plot_stream <- ggplot(dat2.1, aes(cov.seq, occ.mean)) +
+    geom_ribbon(aes(ymin = LL, ymax = UL, fill = covariates), 
+                alpha =.3) +
+    geom_line(aes(colour = covariates), size = 1) + 
+    scale_colour_manual("", values = "black") +
+    scale_fill_manual("", values = "gray50")  +
+    theme_bw () +
+    theme(legend.position = "none") +
+    labs(x = expression(atop("Length of stream (m)", paste("within a buffer"))), 
+         y = expression(paste(italic("Bd"), " occurrence probability"))) +
+    theme(axis.text.x = element_text(size = 8), 
+          axis.text.y = element_text(size = 10), 
+          panel.grid = element_blank(), 
+          strip.text.x = element_text(size = 12, color = "black"),
+          strip.background = element_rect(fill="gray75"),
+          axis.text = element_text(colour = "black")) )
+
+# Preparing plot for forest cover
+(plot_forest <- ggplot(dat2.2, aes(cov.seq, occ.mean)) +
+    geom_ribbon(aes(ymin = LL, ymax = UL, fill = covariates), 
+                alpha =.3) +
+    geom_line(aes(colour = covariates), size = 1) + 
+    scale_colour_manual("", values = "black") +
+    scale_fill_manual("", values = "gray50")  +
+    theme_bw () +
+    theme(legend.position = "none") +
+    xlab("Forest cover (%)") +
+    ylab(NULL) +
+    theme(axis.text.x = element_text(size = 8), 
+          axis.text.y = element_blank(), 
+          panel.grid = element_blank(), 
+          strip.text.x = element_text(size = 12, color = "black"),
+          strip.background = element_rect(fill="gray75"),
+          axis.text = element_text(colour = "black")) )
+
+# Preparing plot for frog species richness
+(plot_richness <- ggplot(dat2.3, aes(cov.seq, occ.mean)) +
+    geom_ribbon(aes(ymin = LL, ymax = UL, fill = covariates), 
+                alpha =.3) +
+    geom_line(aes(colour = covariates), size = 1) + 
+    scale_colour_manual("", values = "black") +
+    scale_fill_manual("", values = "gray50")  +
+    theme_bw () +
+    theme(legend.position = "none") +
+    xlab("Number of species") +
+    ylab(NULL) +
+    theme(axis.text.x = element_text(size = 8), 
+          axis.text.y = element_blank(), 
+          panel.grid = element_blank(), 
+          strip.text.x = element_text(size = 12, color = "black"),
+          strip.background = element_rect(fill="gray75"),
+          axis.text = element_text(colour = "black")) ) 
+
+# Load ggplot2 package
+library(ggpubr)
 
 # Figure 2 Draft
 tiff(
@@ -115,25 +190,9 @@ tiff(
   pointsize = 5.5
 )
 
-ggplot(dat2, aes(cov.seq, occ.mean)) +
-  geom_ribbon(aes(ymin = LL, ymax = UL, fill = covariates), 
-              alpha =.3) +
-  geom_line(aes(colour = covariates), size = 1) + 
-  scale_colour_manual("", values=c("black", "black", "black")) +
-  scale_fill_manual("", values=c("gray50", "gray50", "gray50"))  +
-  facet_wrap( ~ covariates, nrow = 1, scales="free_x", strip.position =) + 
-  theme_bw () +
-  theme(legend.position="none") +
-  labs(x = "", y = "") +
-  theme(axis.text.x = element_text(size = 12, angle = 45), 
-        axis.text.y = element_text(size = 12), 
-        legend.title = element_text(size = 12, color = "black"),
-        legend.text = element_text(size = 12, color = "black"),
-        panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(),
-        strip.text.x=element_text(size = 12, color = "black"),
-        strip.background = element_rect( fill="gray75"),
-        axis.title=element_text(size = 12))
+# Grouping the 3 plots in only one figure
+ggarrange(plot_stream, plot_forest, plot_richness , 
+          ncol = 3, nrow = 1, align = "hv", hjust = 100)
 
 dev.off()
 
