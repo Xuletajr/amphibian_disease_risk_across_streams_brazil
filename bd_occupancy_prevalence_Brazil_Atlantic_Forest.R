@@ -373,8 +373,9 @@ out_bd <- jags(data = sp.data, inits = sp.inits, parameters.to.save = sp.params,
 # Look at output
 out_bd
 
-# Look at traceplots of output
-plot(out_bd)
+out_bd$summary
 
+# Look at traceplots of output
 traceplot(out_bd)
-#
+
+######   end----
