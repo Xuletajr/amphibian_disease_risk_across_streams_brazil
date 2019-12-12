@@ -44,21 +44,26 @@ round(quantile(plogis(out_bd$sims.list$a0),prob=0.975), 3)
 
 # Stream density effect
 round(out_bd$mean$a2, 2); round(out_bd$q2.5$a2, 2); round(out_bd$q97.5$a2, 2)
-#round(out_bd$q25$a2, 2); round(out_bd$q75$a2, 2); round(out_bd$sd$a2, 2)
+
+# Proportion of stream density parameter posterior distribution including positive values
 length(which(out_bd$sims.list$a2 > 0))/3000
 
 # Amphibian richness effect
 round(out_bd$mean$a3, 2); round(out_bd$q2.5$a3, 2); round(out_bd$q97.5$a3, 2)
-#round(out_bd$q25$a3, 2); round(out_bd$q75$a3, 2); round(out_bd$sd$a3, 2)
+
+# Proportion of richness parameter posterior distribution including negative values
 length(which(out_bd$sims.list$a3 < 0))/3000
 
 # Forest effect
 round(out_bd$mean$a1, 2); round(out_bd$q2.5$a1, 2); round(out_bd$q97.5$a1, 2)
-#round(out_bd$q25$a1, 2); round(out_bd$q75$a1, 2); round(out_bd$sd$a1, 2)
-length(which(out_bd$sims.list$a1 < 0))/3000 # 
 
-##############################################################
-### Predict effect of covariates on occupancy probability
+# Proportion of forest cover parameter posterior distribution including positive values
+length(which(out_bd$sims.list$a1 > 0))/3000 # 
+
+######### ######### ######### ######### ######### ######### #########
+######### Predict effect of covariates on occupancy probability
+######### ######### ######### ######### ######### ######### #########
+
 # Getting forest cover values for prediction
 (original.for.pred <- seq(30, 100, length.out = 50))
 (for.pred <- (original.for.pred - mforest)/sdforest)
