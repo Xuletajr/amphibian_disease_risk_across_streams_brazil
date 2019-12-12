@@ -1,19 +1,16 @@
-###########################################################
-#####     Bd real data with covariates - Jos?
-##############     Working...
-#####    Bd occupancy, prevalence and infection intensity
-#########     in the Brazil's Atlantic Rainforest 
-#########################################################
+#############################################################################
+#####  Bd occupancy, prevalence and infection intensity in the Brazil's #####   
+#####         Atlantic Rainforest---- Output analysis and plots         #####
+#############################################################################
 
 # Clear memory
 rm(list=ls(all=TRUE))
-# Set working directory
-setwd("C:/Users/xulet/OneDrive/Publications/Ribeiro_etal_2019_Bd_occupancy/Oecologia/Revision.01/Analysis/FINAL")
+
 # Check the filepath for the working directory
 getwd()                                                              
 
 # Load model output
-load("out_FrogBd_GVD5.RData")
+load("out_FrogBd.RData")
 
 # Load the jagsUI library
 library(jagsUI)
@@ -22,22 +19,22 @@ library(jagsUI)
 library(ggplot2)
 
 ##### Jags output
-out5
+out_bd
 
 #### Traceplots
-traceplot(out5)
+traceplot(out_bd)
 
 ######### ######### ######### ######### ######### 
 ######### Occupancy model output
 ######### ######### ######### ######### ######### 
 
 ### Number of occupied sites
-out5$mean$mean.occ; out5$q2.5$mean.occ; out5$q97.5$mean.occ; out5$sd$mean.occ
+out_bd$mean$mean.occ; out_bd$q2.5$mean.occ; out_bd$q97.5$mean.occ; out_bd$sd$mean.occ
 
-hist(out5$sims.list$mean.occ, breaks=25, col="grey70", ylim=c(0,300), xlab="Number of occupied sites by Bd")
-abline(v=out5$mean$mean.occ, lwd = 3, lty=2, col="red")
+hist(out_bd$sims.list$mean.occ, breaks=25, col="grey70", ylim=c(0,300), xlab="Number of occupied sites by Bd")
+abline(v=out_bd$mean$mean.occ, lwd = 3, lty=2, col="red")
 
-dat.occ <- data.frame (p = out5$sims.list$mean.occ)
+dat.occ <- data.frame (p = out_bd$sims.list$mean.occ)
 
 # Figure 2 Draft
 #tiff(
@@ -65,24 +62,24 @@ dat.occ <- data.frame (p = out5$sims.list$mean.occ)
 
 #####
 ### Occupancy probability
-round(mean(plogis(out5$sims.list$a0)),  3)
-round(quantile(plogis(out5$sims.list$a0),prob=0.025),  3)
-round(quantile(plogis(out5$sims.list$a0),prob=0.975), 3)
+round(mean(plogis(out_bd$sims.list$a0)),  3)
+round(quantile(plogis(out_bd$sims.list$a0),prob=0.025),  3)
+round(quantile(plogis(out_bd$sims.list$a0),prob=0.975), 3)
 
 # Stream density effect
-round(out5$mean$a2, 2); round(out5$q2.5$a2, 2); round(out5$q97.5$a2, 2)
-#round(out5$q25$a2, 2); round(out5$q75$a2, 2); round(out5$sd$a2, 2)
-length(which(out5$sims.list$a2 > 0))/3000
+round(out_bd$mean$a2, 2); round(out_bd$q2.5$a2, 2); round(out_bd$q97.5$a2, 2)
+#round(out_bd$q25$a2, 2); round(out_bd$q75$a2, 2); round(out_bd$sd$a2, 2)
+length(which(out_bd$sims.list$a2 > 0))/3000
 
 # Amphibian richness effect
-round(out5$mean$a3, 2); round(out5$q2.5$a3, 2); round(out5$q97.5$a3, 2)
-#round(out5$q25$a3, 2); round(out5$q75$a3, 2); round(out5$sd$a3, 2)
-length(which(out5$sims.list$a3 < 0))/3000
+round(out_bd$mean$a3, 2); round(out_bd$q2.5$a3, 2); round(out_bd$q97.5$a3, 2)
+#round(out_bd$q25$a3, 2); round(out_bd$q75$a3, 2); round(out_bd$sd$a3, 2)
+length(which(out_bd$sims.list$a3 < 0))/3000
 
 # Forest effect
-round(out5$mean$a1, 2); round(out5$q2.5$a1, 2); round(out5$q97.5$a1, 2)
-#round(out5$q25$a1, 2); round(out5$q75$a1, 2); round(out5$sd$a1, 2)
-length(which(out5$sims.list$a1 < 0))/3000 # 
+round(out_bd$mean$a1, 2); round(out_bd$q2.5$a1, 2); round(out_bd$q97.5$a1, 2)
+#round(out_bd$q25$a1, 2); round(out_bd$q75$a1, 2); round(out_bd$sd$a1, 2)
+length(which(out_bd$sims.list$a1 < 0))/3000 # 
 
 ##############################################################
 ### Predict effect of covariates on occupancy probability
@@ -102,14 +99,14 @@ sort(ric)
 
 ###
 # Like Kery and Royle (2015)
-nsamp <- length(out5$sims.list$a0)
+nsamp <- length(out_bd$sims.list$a0)
 pred.occ <- array(NA, dim=c(50, nsamp, 3))
 dim(pred.occ)
 
 for(i in 1:nsamp){
-  pred.occ[,i,1] <- plogis(out5$sims.list$a0[i] + out5$sims.list$a1[i] * for.pred)
-  pred.occ[,i,2] <- plogis(out5$sims.list$a0[i] + out5$sims.list$a2[i] * hydro.pred )
-  pred.occ[,i,3] <- plogis(out5$sims.list$a0[i] + out5$sims.list$a3[i] * ric.pred )
+  pred.occ[,i,1] <- plogis(out_bd$sims.list$a0[i] + out_bd$sims.list$a1[i] * for.pred)
+  pred.occ[,i,2] <- plogis(out_bd$sims.list$a0[i] + out_bd$sims.list$a2[i] * hydro.pred )
+  pred.occ[,i,3] <- plogis(out_bd$sims.list$a0[i] + out_bd$sims.list$a3[i] * ric.pred )
 }
 
 # Get postrior mean, 95% CIs and plot
@@ -164,24 +161,24 @@ dev.off()
 ################# Infection intensity ####################
 ##########################################################
 # Average Bd infection intensity across streams
-mean(out5$sims.list$n0)
-mean(exp(out5$sims.list$n0))
+mean(out_bd$sims.list$n0)
+mean(exp(out_bd$sims.list$n0))
 
 # n1 parameter - forest cover
-out5$mean$n1; out5$q2.5$n1; out5$q97.5$n1
-length(which(out5$sims.list$n1 > 0))/3000
+out_bd$mean$n1; out_bd$q2.5$n1; out_bd$q97.5$n1
+length(which(out_bd$sims.list$n1 > 0))/3000
 
 # n2 parameter - species richness
-out5$mean$n2; out5$q2.5$n2; out5$q97.5$n2
-length(which(out5$sims.list$n2 > 0))/3000
+out_bd$mean$n2; out_bd$q2.5$n2; out_bd$q97.5$n2
+length(which(out_bd$sims.list$n2 > 0))/3000
 
-nsamp <- length(out5$sims.list$a0)
+nsamp <- length(out_bd$sims.list$a0)
 pred.int <- array(NA, dim=c(50, nsamp, 2))
 dim(pred.int)
 
 for(i in 1:nsamp){
-  pred.int[,i,1] <- (out5$sims.list$n0[i] + out5$sims.list$n1[i] * for.pred)
-  pred.int[,i,2] <- (out5$sims.list$n0[i] + out5$sims.list$n2[i] * hydro.pred )
+  pred.int[,i,1] <- (out_bd$sims.list$n0[i] + out_bd$sims.list$n1[i] * for.pred)
+  pred.int[,i,2] <- (out_bd$sims.list$n0[i] + out_bd$sims.list$n2[i] * hydro.pred )
 }
 
 # Get postrior mean, 95% CIs and plot
@@ -255,33 +252,33 @@ max(prev)
 mean(prev)
 
 # Bd prevalence at each stream regardless of aquatic index
-round(plogis(out5$mean$beta), 3)
-round(plogis(out5$q2.5$beta),  3) 
-round(plogis(out5$q97.5$beta), 3)
+round(plogis(out_bd$mean$beta), 3)
+round(plogis(out_bd$q2.5$beta),  3) 
+round(plogis(out_bd$q97.5$beta), 3)
 
 # Prevalence of terrestrial-breeding species (AI-0) 
-round(out5$mean$prev.AI0,  3); round(mean(plogis(out5$sims.list$beta + out5$sims.list$b0 )),  3) 
-round(out5$q2.5$prev.AI0,  3) 
-round(out5$q97.5$prev.AI0, 3)
+round(out_bd$mean$prev.AI0,  3); round(mean(plogis(out_bd$sims.list$beta + out_bd$sims.list$b0 )),  3) 
+round(out_bd$q2.5$prev.AI0,  3) 
+round(out_bd$q97.5$prev.AI0, 3)
 
 # Prevalence (or detection probability ) of arboreal species with aquatic larvae (AI-1) 
-round(out5$mean$prev.AI1,  3)
-round(out5$q2.5$prev.AI1,  3)
-round(out5$q97.5$prev.AI1, 3)
+round(out_bd$mean$prev.AI1,  3)
+round(out_bd$q2.5$prev.AI1,  3)
+round(out_bd$q97.5$prev.AI1, 3)
 
 # Prevalence (or detection probability ) of terrestrial species with aquatic larvae (AI-2) 
-round(out5$mean$prev.AI2,  3)
-round(out5$q2.5$prev.AI2,  3)
-round(out5$q97.5$prev.AI2, 3)
+round(out_bd$mean$prev.AI2,  3)
+round(out_bd$q2.5$prev.AI2,  3)
+round(out_bd$q97.5$prev.AI2, 3)
 
 # Infection intensity of terrestrial-breeding species (AI-0) 
-out5$mean$int.AI0; out5$q2.5$int.AI0; out5$q97.5$int.AI0
+out_bd$mean$int.AI0; out_bd$q2.5$int.AI0; out_bd$q97.5$int.AI0
 
 # Infection intensity of arboreal species with aquatic larvae (AI-1) 
-out5$mean$int.AI1; out5$q2.5$int.AI1; out5$q97.5$int.AI1
+out_bd$mean$int.AI1; out_bd$q2.5$int.AI1; out_bd$q97.5$int.AI1
 
 # Infection intensity of terrestrial species with aquatic larvae (AI-2)
-out5$mean$int.AI2; out5$q2.5$int.AI2; out5$q97.5$int.AI2  
+out_bd$mean$int.AI2; out_bd$q2.5$int.AI2; out_bd$q97.5$int.AI2  
 
 # The differences between parameters related to aquatic index at each MCMC iteration 
 # following Ruiz-Guti?rrez et al. (2010). We computed the proportion of iterations 
@@ -290,38 +287,38 @@ out5$mean$int.AI2; out5$q2.5$int.AI2; out5$q97.5$int.AI2
 
 # Difference in the prevalence parameter between AI
 # Prevalence: AI-0 vs AI-1 - Pr(b0 > b1)
-mean(out5$sims.list$b0 > out5$sims.list$b1)
-length(which(out5$sims.list$b0 - out5$sims.list$b1 > 0))/3000
+mean(out_bd$sims.list$b0 > out_bd$sims.list$b1)
+length(which(out_bd$sims.list$b0 - out_bd$sims.list$b1 > 0))/3000
 
 # Prevalence: AI-0 vs AI-2 - Pr(b0 > b2)
-mean(out5$sims.list$b0 > out5$sims.list$b2)
-length(which(out5$sims.list$b0 - out5$sims.list$b2 > 0))/3000
+mean(out_bd$sims.list$b0 > out_bd$sims.list$b2)
+length(which(out_bd$sims.list$b0 - out_bd$sims.list$b2 > 0))/3000
 
 # Prevalence: AI-1 vs AI-2 - Pr(b2 > b1)
-mean(out5$sims.list$b2 > out5$sims.list$b1)
-length(which(out5$sims.list$b2 - out5$sims.list$b1 > 0))/3000
+mean(out_bd$sims.list$b2 > out_bd$sims.list$b1)
+length(which(out_bd$sims.list$b2 - out_bd$sims.list$b1 > 0))/3000
 
 # Difference in the intensity parameter between AI
 # Infection intensity: AI-0 vs AI-1 - Pr(b0 > b1)
-mean(out5$sims.list$int.AI0 < out5$sims.list$int.AI1)
-length(which(out5$sims.list$int.AI0 - out5$sims.list$int.AI1 > 0))/3000
+mean(out_bd$sims.list$int.AI0 < out_bd$sims.list$int.AI1)
+length(which(out_bd$sims.list$int.AI0 - out_bd$sims.list$int.AI1 > 0))/3000
 
 # Infection intensity: AI-0 vs AI-2 - Pr(b0 > b2)
-mean(out5$sims.list$int.AI0 < out5$sims.list$int.AI2)
-length(which(out5$sims.list$int.AI0 - out5$sims.list$int.AI2 > 0))/3000
+mean(out_bd$sims.list$int.AI0 < out_bd$sims.list$int.AI2)
+length(which(out_bd$sims.list$int.AI0 - out_bd$sims.list$int.AI2 > 0))/3000
 
 # Infection intensity: AI-2 vs AI-1 - Pr(b2 > b1)
-mean(out5$sims.list$int.AI2 > out5$sims.list$int.AI1)
-length(which(out5$sims.list$int.AI2 - out5$sims.list$int.AI1 > 0))/3000
+mean(out_bd$sims.list$int.AI2 > out_bd$sims.list$int.AI1)
+length(which(out_bd$sims.list$int.AI2 - out_bd$sims.list$int.AI1 > 0))/3000
 
 ### FIGURE 3 MANUSCRIPT
 # Putting prevalence data in a data frame
-dat3 <- data.frame (p = c(out5$sims.list$prev.AI0, 
-                          out5$sims.list$prev.AI1, 
-                          out5$sims.list$prev.AI2),
-                    AI = c(rep("AI-0", length(out5$sims.list$prev.AI0)), 
-                           rep("AI-1", length(out5$sims.list$prev.AI1)), 
-                           rep("AI-2", length(out5$sims.list$prev.AI2))))
+dat3 <- data.frame (p = c(out_bd$sims.list$prev.AI0, 
+                          out_bd$sims.list$prev.AI1, 
+                          out_bd$sims.list$prev.AI2),
+                    AI = c(rep("AI-0", length(out_bd$sims.list$prev.AI0)), 
+                           rep("AI-1", length(out_bd$sims.list$prev.AI1)), 
+                           rep("AI-2", length(out_bd$sims.list$prev.AI2))))
 
 dat3
 
@@ -354,23 +351,23 @@ ggplot(dat3, aes(x = p, fill = AI, color = AI, group = AI)) +
 dev.off()
 
 # Forest effect - prevalence
-round(out5$mean$b3, 3); round(out5$q2.5$b3, 3); round(out5$q97.5$b3, 3)
-#round(out5$q25$b3, 2); round(out5$q75$b3, 2); round(out5$sd$b3, 2)
-length(which(out5$sims.list$b3 > 0))/3000 # 
+round(out_bd$mean$b3, 3); round(out_bd$q2.5$b3, 3); round(out_bd$q97.5$b3, 3)
+#round(out_bd$q25$b3, 2); round(out_bd$q75$b3, 2); round(out_bd$sd$b3, 2)
+length(which(out_bd$sims.list$b3 > 0))/3000 # 
 
 # Date linear effect - prevalence
-round(out5$mean$b4, 3); round(out5$q2.5$b4, 3); round(out5$q97.5$b4, 3)
-#round(out5$q25$b4, 2); round(out5$q75$b4, 2); round(out5$sd$b4, 2)
-length(which(out5$sims.list$b4 < 0))/3000 # 
+round(out_bd$mean$b4, 3); round(out_bd$q2.5$b4, 3); round(out_bd$q97.5$b4, 3)
+#round(out_bd$q25$b4, 2); round(out_bd$q75$b4, 2); round(out_bd$sd$b4, 2)
+length(which(out_bd$sims.list$b4 < 0))/3000 # 
 
 # Date quadratic effect - prevalence
-round(out5$mean$b5, 3); round(out5$q2.5$b5, 3); round(out5$q97.5$b5, 3)
-#round(out5$q25$b5, 2); round(out5$q75$b5, 2); round(out5$sd$b5, 2)
-length(which(out5$sims.list$b5 < 0))/3000 # 
+round(out_bd$mean$b5, 3); round(out_bd$q2.5$b5, 3); round(out_bd$q97.5$b5, 3)
+#round(out_bd$q25$b5, 2); round(out_bd$q75$b5, 2); round(out_bd$sd$b5, 2)
+length(which(out_bd$sims.list$b5 < 0))/3000 # 
 
 # Getting the peak day of detection probability (x axis)
-( -out5$mean$b4/ 2*out5$mean$b5) # -0.1970684
-((-out5$mean$b4/ 2*out5$mean$b5)*sddate) + mdate #~ day 58.6
+( -out_bd$mean$b4/ 2*out_bd$mean$b5) # -0.1970684
+((-out_bd$mean$b4/ 2*out_bd$mean$b5)*sddate) + mdate #~ day 58.6
 ((-0.1970684)*sddate) + mdate
 as.Date(((-0.1970684)*sddate) + mdate, origin=as.Date("2015-11-09"))
 as.Date(58.6, origin=as.Date("2015-11-09"))
@@ -385,20 +382,20 @@ as.Date(58.6, origin=as.Date("2015-11-09"))
 
 ###
 # Like Kery and Royle (2015)
-nsamp <- length(out5$sims.list$beta)
+nsamp <- length(out_bd$sims.list$beta)
 pred.prev <- array(NA, dim=c(50, nsamp, 3))
 dim(pred.prev)
 
 for(i in 1:nsamp){
-  pred.prev[,i,1] <- plogis(out5$sims.list$beta[i] + out5$sims.list$b0[i] +  out5$sims.list$b4[i] * date.pred + out5$sims.list$b5[i] * date.pred^2)
-  pred.prev[,i,2] <- plogis(out5$sims.list$beta[i] + out5$sims.list$b1[i] +  out5$sims.list$b4[i] * date.pred + out5$sims.list$b5[i] * date.pred^2)
-  pred.prev[,i,3] <- plogis(out5$sims.list$beta[i] + out5$sims.list$b2[i] +  out5$sims.list$b4[i] * date.pred + out5$sims.list$b5[i] * date.pred^2)
+  pred.prev[,i,1] <- plogis(out_bd$sims.list$beta[i] + out_bd$sims.list$b0[i] +  out_bd$sims.list$b4[i] * date.pred + out_bd$sims.list$b5[i] * date.pred^2)
+  pred.prev[,i,2] <- plogis(out_bd$sims.list$beta[i] + out_bd$sims.list$b1[i] +  out_bd$sims.list$b4[i] * date.pred + out_bd$sims.list$b5[i] * date.pred^2)
+  pred.prev[,i,3] <- plogis(out_bd$sims.list$beta[i] + out_bd$sims.list$b2[i] +  out_bd$sims.list$b4[i] * date.pred + out_bd$sims.list$b5[i] * date.pred^2)
 }
 
 #for(i in 1:nsamp){
-# pred.prev[,i,1] <- plogis(out5$sims.list$beta[i] + out5$sims.list$b0[i] +  out5$sims.list$b4[i] * date.pred)
-# pred.prev[,i,2] <- plogis(out5$sims.list$beta[i] + out5$sims.list$b1[i] +  out5$sims.list$b4[i] * date.pred)
-# pred.prev[,i,3] <- plogis(out5$sims.list$beta[i] + out5$sims.list$b2[i] +  out5$sims.list$b4[i] * date.pred)
+# pred.prev[,i,1] <- plogis(out_bd$sims.list$beta[i] + out_bd$sims.list$b0[i] +  out_bd$sims.list$b4[i] * date.pred)
+# pred.prev[,i,2] <- plogis(out_bd$sims.list$beta[i] + out_bd$sims.list$b1[i] +  out_bd$sims.list$b4[i] * date.pred)
+# pred.prev[,i,3] <- plogis(out_bd$sims.list$beta[i] + out_bd$sims.list$b2[i] +  out_bd$sims.list$b4[i] * date.pred)
 #}
 
 # Get postrior mean, 95% CIs and plot
@@ -455,61 +452,61 @@ dev.off()
 ######### ######### ######### ######### ######### ######### 
 # 1 - (1 - p)^n  # n is the number of individuals tested
 
-prob.detec.ai0.f100 <- matrix(NA, nrow = length(out5$sims.list$beta), ncol = 35)
-prob.detec.ai1.f100 <- matrix(NA, nrow = length(out5$sims.list$beta), ncol = 35)
-prob.detec.ai2.f100 <- matrix(NA, nrow = length(out5$sims.list$beta), ncol = 35)
+prob.detec.ai0.f100 <- matrix(NA, nrow = length(out_bd$sims.list$beta), ncol = 35)
+prob.detec.ai1.f100 <- matrix(NA, nrow = length(out_bd$sims.list$beta), ncol = 35)
+prob.detec.ai2.f100 <- matrix(NA, nrow = length(out_bd$sims.list$beta), ncol = 35)
 
-prob.detec.ai0.f30 <- matrix(NA, nrow = length(out5$sims.list$beta), ncol = 35)
-prob.detec.ai1.f30 <- matrix(NA, nrow = length(out5$sims.list$beta), ncol = 35)
-prob.detec.ai2.f30 <- matrix(NA, nrow = length(out5$sims.list$beta), ncol = 35)
+prob.detec.ai0.f30 <- matrix(NA, nrow = length(out_bd$sims.list$beta), ncol = 35)
+prob.detec.ai1.f30 <- matrix(NA, nrow = length(out_bd$sims.list$beta), ncol = 35)
+prob.detec.ai2.f30 <- matrix(NA, nrow = length(out_bd$sims.list$beta), ncol = 35)
 
 
 # Terrestrial-breeding (AI-0) - Forest cover 30%
-for (i in 1:length(out5$sims.list$beta)) {
+for (i in 1:length(out_bd$sims.list$beta)) {
   for (j in 1:35) { 
-    prob.detec.ai0.f30[i,j]  <- 1 - (1 - plogis(out5$sims.list$beta[i] + out5$sims.list$b0[i] + 
-                                                  out5$sims.list$b3[i] * -1.6782 ))^j
+    prob.detec.ai0.f30[i,j]  <- 1 - (1 - plogis(out_bd$sims.list$beta[i] + out_bd$sims.list$b0[i] + 
+                                                  out_bd$sims.list$b3[i] * -1.6782 ))^j
   }
 }
 
 # Terrestrial-breeding (AI-0 ) - Forest cover 100%
-for (i in 1:length(out5$sims.list$beta)) {
+for (i in 1:length(out_bd$sims.list$beta)) {
   for (j in 1:35) { 
-    prob.detec.ai0.f100[i,j]  <- 1 - (1 - plogis(out5$sims.list$beta[i] + out5$sims.list$b0[i] + 
-                                                   out5$sims.list$b3[i] * 1.4138 ))^j
+    prob.detec.ai0.f100[i,j]  <- 1 - (1 - plogis(out_bd$sims.list$beta[i] + out_bd$sims.list$b0[i] + 
+                                                   out_bd$sims.list$b3[i] * 1.4138 ))^j
   }
 }
 
 
 # Aquatic-breeding with arboreal habit (AI-1) - Forest cover 30%
-for (i in 1:length(out5$sims.list$beta)) {
+for (i in 1:length(out_bd$sims.list$beta)) {
   for (j in 1:35) { 
-    prob.detec.ai1.f30[i,j]  <- 1 - (1 - plogis(out5$sims.list$beta[i] + out5$sims.list$b1[i] +
-                                                  out5$sims.list$b3[i] * -1.6782))^j
+    prob.detec.ai1.f30[i,j]  <- 1 - (1 - plogis(out_bd$sims.list$beta[i] + out_bd$sims.list$b1[i] +
+                                                  out_bd$sims.list$b3[i] * -1.6782))^j
   }
 }
 
 # Aquatic-breeding with arboreal habit (AI-1) - Forest cover 100%
-for (i in 1:length(out5$sims.list$beta)) {
+for (i in 1:length(out_bd$sims.list$beta)) {
   for (j in 1:35) { 
-    prob.detec.ai1.f100[i,j]  <- 1 - (1 - plogis(out5$sims.list$beta[i] + out5$sims.list$b1[i] +
-                                                   out5$sims.list$b3[i] * 1.4138))^j
+    prob.detec.ai1.f100[i,j]  <- 1 - (1 - plogis(out_bd$sims.list$beta[i] + out_bd$sims.list$b1[i] +
+                                                   out_bd$sims.list$b3[i] * 1.4138))^j
   }
 }
 
 # Aquatic-breeding with terrestrial habit (AI-2) - Forest cover 30%
-for (i in 1:length(out5$sims.list$beta)) {
+for (i in 1:length(out_bd$sims.list$beta)) {
   for (j in 1:35) { 
-    prob.detec.ai2.f30[i,j]  <- 1 - (1 - plogis(out5$sims.list$beta[i] + out5$sims.list$b2[i] + 
-                                                  out5$sims.list$b3[i] * -1.6782))^j
+    prob.detec.ai2.f30[i,j]  <- 1 - (1 - plogis(out_bd$sims.list$beta[i] + out_bd$sims.list$b2[i] + 
+                                                  out_bd$sims.list$b3[i] * -1.6782))^j
   }
 }
 
 # Aquatic-breeding with terrestrial habit (AI-2) - Forest cover 100%
-for (i in 1:length(out5$sims.list$beta)) {
+for (i in 1:length(out_bd$sims.list$beta)) {
   for (j in 1:35) { 
-    prob.detec.ai2.f100[i,j]  <- 1 - (1 - plogis(out5$sims.list$beta[i] + out5$sims.list$b2[i] + 
-                                                   out5$sims.list$b3[i] * 1.4138))^j
+    prob.detec.ai2.f100[i,j]  <- 1 - (1 - plogis(out_bd$sims.list$beta[i] + out_bd$sims.list$b2[i] + 
+                                                   out_bd$sims.list$b3[i] * 1.4138))^j
   }
 }
 
