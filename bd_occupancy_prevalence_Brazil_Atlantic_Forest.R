@@ -306,7 +306,7 @@ sp.params = c("mean.occ", "occ.rate",
               "mean.x", "mean.N", "mean.w",
               "int.AI0", "int.AI1", "int.AI2",
               "a0", "a1", "a2", "a3",
-              "beta", "b0", "b1", "b2", "b3",
+              "b0", "b1", "b2", "b3",
               "prev.AI0", "prev.AI1", "prev.AI2",
               "sd.p", "sd", "sd.var",
               "n0", "n1", "n2"
@@ -348,7 +348,6 @@ sp.inits = function (){ list(
   a2 = runif(1, -3, 3),
   a3 = runif(1, -3, 3),
   
-  beta = runif(1, -3, 3),
   b0  = runif(1, -3, 3),
   b1  = runif(1, -3, 3),
   b2  = runif(1, -3, 3),

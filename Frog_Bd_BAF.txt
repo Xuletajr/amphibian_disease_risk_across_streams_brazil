@@ -12,7 +12,6 @@
     a3 ~ dnorm (0, 0.368)    # Anuran richness
     
     # Probability of infection covariate paramaters (p)
-    beta ~ dnorm(0, 0.368) # Intercept for prevalence model
     b0 ~ dnorm (0,0.368)   # direct developers
     b1 ~ dnorm (0,0.368)   # species breeding in aquatic habitats but occupying the arboreal stratum
     b2 ~ dnorm (0,0.368)   # species breeding in aquatic habitats and occupying the margins of streams and other bodies of water
@@ -64,8 +63,7 @@
     # Probability of Bd infection at each site
     
     # Describes the relationship of prob. Bd infection and aquatic index, forest cover, and date    
-    logit(p[j, k]) <- beta + b0 * bd.AI0[j, k] + b1 * bd.AI1[j, k] + b2 * bd.AI2[j, k] + 
-    b3 * forest1[j]
+    logit(p[j, k]) <- b0 * bd.AI0[j, k] + b1 * bd.AI1[j, k] + b2 * bd.AI2[j, k] + b3 * forest1[j]
     
     mu_inf[j, k] <- p[j, k] * z[j] # There has to be Bd at a site to calculate prob. of infection
     
