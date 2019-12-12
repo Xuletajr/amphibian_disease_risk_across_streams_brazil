@@ -134,12 +134,11 @@ dat2.3
     theme(legend.position = "none") +
     labs(x = expression(atop("Length of stream (m)", paste("within a buffer"))), 
          y = expression(paste(italic("Bd"), " occurrence probability"))) +
-    theme(axis.text.x = element_text(size = 8), 
+    theme(axis.text.x =  element_text(size = 8, angle = 45, colour = "black", hjust = 1), 
           axis.text.y = element_text(size = 10), 
           panel.grid = element_blank(), 
           strip.text.x = element_text(size = 12, color = "black"),
-          strip.background = element_rect(fill="gray75"),
-          axis.text = element_text(colour = "black")) )
+          strip.background = element_rect(fill="gray75")) )
 
 # Preparing plot for forest cover
 (plot_forest <- ggplot(dat2.2, aes(cov.seq, occ.mean)) +
@@ -152,12 +151,11 @@ dat2.3
     theme(legend.position = "none") +
     xlab("Forest cover (%)") +
     ylab(NULL) +
-    theme(axis.text.x = element_text(size = 8), 
+    theme(axis.text.x = element_text(size = 8, angle = 45, colour = "black", hjust = 1), 
           axis.text.y = element_blank(), 
           panel.grid = element_blank(), 
           strip.text.x = element_text(size = 12, color = "black"),
-          strip.background = element_rect(fill="gray75"),
-          axis.text = element_text(colour = "black")) )
+          strip.background = element_rect(fill="gray75")) )
 
 # Preparing plot for frog species richness
 (plot_richness <- ggplot(dat2.3, aes(cov.seq, occ.mean)) +
@@ -170,12 +168,11 @@ dat2.3
     theme(legend.position = "none") +
     xlab("Number of species") +
     ylab(NULL) +
-    theme(axis.text.x = element_text(size = 8), 
+    theme(axis.text.x = element_text(size = 8, angle = 45, colour = "black", hjust = 1), 
           axis.text.y = element_blank(), 
           panel.grid = element_blank(), 
           strip.text.x = element_text(size = 12, color = "black"),
-          strip.background = element_rect(fill="gray75"),
-          axis.text = element_text(colour = "black")) ) 
+          strip.background = element_rect(fill="gray75")) ) 
 
 # Load ggplot2 package
 library(ggpubr)
