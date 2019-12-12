@@ -289,8 +289,8 @@ cat("
     ", fill = TRUE)
 sink()
 
-#Create the necessary arguments to run the jags() command 
-#Load all the data
+# Create the necessary arguments to run the jags() command 
+# Load all the data
 sp.data = list (nsites = nsites,        # Number of sites
                 n.swabbed = n.swabbed,  # Number of swabbed frogs per site 
                 forest1 = forest1,      # forest cover
@@ -303,7 +303,7 @@ sp.data = list (nsites = nsites,        # Number of sites
                 w = log(bd.intensity) # site x frog matrix with Bd infection intensity
 )
 
-#Specify the parameters to be monitored
+# Specify the parameters to be monitored
 sp.params = c("mean.occ", "occ.rate",
               "mean.x", "mean.N", "mean.w",
               "int.AI0", "int.AI1", "int.AI2",
@@ -362,10 +362,10 @@ sp.inits = function (){ list(
 # MCMC test settings
 ni <- 55000; nt <- 50; nb <- 5000; nc <- 3; na = 100000
 
-#Load the R2Jags library
+# Load the R2Jags library
 library(jagsUI)
 
-#Run the model and call the results out (around 6.7 minutes)
+# Run the model and call the results out (around 6.7 minutes)
 out_bd <- jags(data = sp.data, inits = sp.inits, parameters.to.save = sp.params, 
              model = "Frog_Bd_BAF.txt", n.chains = nc, n.thin = nt, n.iter = ni, 
              n.burnin = nb, parallel = TRUE, store.data = TRUE, n.adapt = na)
