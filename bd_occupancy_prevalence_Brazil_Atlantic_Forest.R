@@ -370,12 +370,4 @@ out_bd <- jags(data = sp.data, inits = sp.inits, parameters.to.save = sp.params,
              model = "Frog_Bd_BAF.txt", n.chains = nc, n.thin = nt, n.iter = ni, 
              n.burnin = nb, parallel = TRUE, store.data = TRUE, n.adapt = na)
 
-# Look at output
-out_bd
-
-out_bd$summary
-
-# Look at traceplots of output
-traceplot(out_bd)
-
 ######   end----

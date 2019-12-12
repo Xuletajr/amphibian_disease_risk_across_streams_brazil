@@ -10,7 +10,7 @@ rm(list=ls(all=TRUE))
 getwd()                                                              
 
 # Load model output
-load("out_FrogBd.RData")
+load("output_bd.RData")
 
 # Load the jagsUI library
 library(jagsUI)
@@ -18,10 +18,12 @@ library(jagsUI)
 # Load ggplot2 package
 library(ggplot2)
 
-##### Jags output
+# Look at output
 out_bd
 
-#### Traceplots
+out_bd$summary
+
+# Look at traceplots
 traceplot(out_bd)
 
 ######### ######### ######### ######### ######### 
