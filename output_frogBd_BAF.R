@@ -21,8 +21,6 @@ library(ggplot2)
 # Look at output
 out_bd
 
-out_bd$summary
-
 # Look at traceplots
 traceplot(out_bd)
 
