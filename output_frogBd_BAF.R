@@ -449,14 +449,14 @@ for (i in 1:length(out_bd$sims.list$b2)) {
 }
 
 # Data frame for 30% forest cover
-dat5a <- data.frame ( y = c(apply(prob.detec.ai0.f30, 2 , mean), 
+dat4a <- data.frame ( y = c(apply(prob.detec.ai0.f30, 2 , mean), 
                             apply(prob.detec.ai1.f30, 2 , mean), 
                             apply(prob.detec.ai2.f30, 2 , mean)),
                       samples = rep(1:35, 3),
                       group = rep (c ("AI-0", "AI-1", "AI-2"), each=35))
 
 # Data frame for 100% forest cover
-dat5b <- data.frame ( y = c(apply(prob.detec.ai0.f100, 2 , mean), 
+dat4b <- data.frame ( y = c(apply(prob.detec.ai0.f100, 2 , mean), 
                             apply(prob.detec.ai1.f100, 2 , mean), 
                             apply(prob.detec.ai2.f100, 2 , mean)),
                       samples = rep(1:35, 3),
@@ -465,9 +465,9 @@ dat5b <- data.frame ( y = c(apply(prob.detec.ai0.f100, 2 , mean),
 
 ai.colour <-c( "#E69F00" , "#009E73", "#56B4E9")
 
-# Figure S2 Draft (Appendix S2)
+# Figure 4
 tiff(
-  "fig5ea.tiff",
+  "./output/figures/fig4a.tiff",
   width     = 5,
   height    = 4,
   units     = "in",
@@ -475,7 +475,7 @@ tiff(
   pointsize = 5.5
 )
 
-ggplot(dat5a, aes(x=samples, y=y,  colour=group, group=group,  pch=group)) +
+ggplot(dat4a, aes(x=samples, y=y,  colour=group, group=group,  pch=group)) +
   geom_line(alpha = 0.9) +
   geom_point(size = 2.5,  alpha = 0.8) +
   scale_fill_manual(values = c( "#E69F00" , "#009E73", "#56B4E9"))+
@@ -499,7 +499,7 @@ ggplot(dat5a, aes(x=samples, y=y,  colour=group, group=group,  pch=group)) +
 dev.off()
 
 tiff(
-  "fig5eb.tiff",
+  "./figures/fig4b.tiff",
   width     = 5,
   height    = 4,
   units     = "in",
@@ -508,7 +508,7 @@ tiff(
 )
 
 
-ggplot(dat5b, aes(x=samples, y=y, colour=group, group=group,  pch=group)) +
+ggplot(dat4b, aes(x=samples, y=y, colour=group, group=group,  pch=group)) +
   geom_line(alpha = 0.9) +
   geom_point(size = 2.5, alpha = 0.8) +
   scale_fill_manual(values = c( "#E69F00" , "#009E73", "#56B4E9"))+
