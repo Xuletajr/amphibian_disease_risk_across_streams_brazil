@@ -394,7 +394,6 @@ prob.detec.ai0.f30 <- matrix(NA, nrow = length(out_bd$sims.list$b0), ncol = 35)
 prob.detec.ai1.f30 <- matrix(NA, nrow = length(out_bd$sims.list$b1), ncol = 35)
 prob.detec.ai2.f30 <- matrix(NA, nrow = length(out_bd$sims.list$b2), ncol = 35)
 
-
 # Terrestrial-breeding (AI-0) - Forest cover 30%
 for (i in 1:length(out_bd$sims.list$b0)) {
   for (j in 1:35) { 
