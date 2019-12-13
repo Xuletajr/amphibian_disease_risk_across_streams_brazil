@@ -230,7 +230,7 @@ dat6 <- data.frame(int.mean = c(int.mean[,2], int.mean[,1]),
 
 # Figure 6 - Figure was not included in the manuscript
 tiff(
-  "fig06.tiff",
+  "./output_figures/fig06.tiff",
   width     = 6.5,
   height    = 3,
   units     = "in",
@@ -266,9 +266,9 @@ ggplot(dat6, aes(cov.seq, int.mean)) +
 
 dev.off()
 
-######### ######### ######### ######### ######### 
+######### ######### ######### ######### ######### ######### #########
 ######### Prevalence model output
-######### ######### ######### ######### ######### 
+######### ######### ######### ######### ######### ######### #########
 # Naive Bd prevalence within a stream
 bd.intensity1 <- read.table("./data/bd_load.txt", header=T)
 bd.intensity1[bd.intensity1 > 0] <- 1
@@ -282,11 +282,6 @@ prev <- rowSums(bd.intensity1, na.rm = TRUE)/n.swabbed
 min(prev)
 max(prev)
 mean(prev)
-
-# Bd prevalence at each stream regardless of aquatic index
-round(plogis(out_bd$mean$beta), 3)
-round(plogis(out_bd$q2.5$beta),  3) 
-round(plogis(out_bd$q97.5$beta), 3)
 
 # Prevalence of terrestrial-breeding species (AI-0) 
 round(out_bd$mean$prev.AI0,  3); round(mean(plogis(out_bd$sims.list$beta + out_bd$sims.list$b0 )),  3) 
