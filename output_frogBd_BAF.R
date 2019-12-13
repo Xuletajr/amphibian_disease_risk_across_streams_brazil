@@ -100,10 +100,7 @@ dat2.1 <- data.frame(occ.mean = occ.mean[,2],
                    LL = occ.ci[1,,2],
                    UL = occ.ci[2,,2],
                    covariates = factor(rep("Stream density", 50 )))
-                   ,
-                   covariates  = factor(rep(1:3, each = 50), levels = 1:3, 
-                                        labels = c("Stream density", "Forest cover", 
-                                                   "Amphibian richness")))
+                   
 dat2.1
 
 dat2.2 <- data.frame(occ.mean = occ.mean[,1],
@@ -114,7 +111,6 @@ dat2.2 <- data.frame(occ.mean = occ.mean[,1],
                      
 dat2.2                                                     
                                                                                                         
-
 dat2.3 <- data.frame(occ.mean = occ.mean[,3],
                      cov.seq =  original.ric.pred,
                      LL = occ.ci[1,,3],
@@ -467,7 +463,7 @@ ai.colour <-c( "#E69F00" , "#009E73", "#56B4E9")
 
 # Figure 4
 tiff(
-  "./output/figures/fig4a.tiff",
+  "./output_figures/fig4a.tiff",
   width     = 5,
   height    = 4,
   units     = "in",
@@ -499,7 +495,7 @@ ggplot(dat4a, aes(x=samples, y=y,  colour=group, group=group,  pch=group)) +
 dev.off()
 
 tiff(
-  "./figures/fig4b.tiff",
+  "./output_figures/fig4b.tiff",
   width     = 5,
   height    = 4,
   units     = "in",
