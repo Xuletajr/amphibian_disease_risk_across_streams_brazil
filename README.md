@@ -44,7 +44,7 @@ habitat_covariates.txt - contains habitat covariate information for each site.
 ## Codes
 __*bd_occupancy_prevalence_Brazil_Atlantic_Forest.R*__ - R code to run hierarchical Bayesian model (Miller et al. 2012, DiRenzo et al. 2018) to estimate *Bd* occurrence, prevalence, and infection intensity. Contains code to import and reshape the data, summary statistics, and run the model file in JAGS.
 
-__*output_frogBd_17_may_2019.R*__ - 
+__*output_frogBd_BAF.R*__ - 
 
 ## References
 - DiRenzo GV, Grant EHC, Longo AV, et al (2018) Imperfect pathogen detection from non-invasive skin swabs biases disease inference. Methods Ecol Evol 9:380–389. doi: 10.1111/2041-210X.12868
