@@ -390,60 +390,60 @@ length(which(out_bd$sims.list$b3 > 0))/3000 #
 ######### ######### ######### ######### ######### ######### 
 # 1 - (1 - p)^n  # n is the number of individuals tested
 
-prob.detec.ai0.f100 <- matrix(NA, nrow = length(out_bd$sims.list$beta), ncol = 35)
-prob.detec.ai1.f100 <- matrix(NA, nrow = length(out_bd$sims.list$beta), ncol = 35)
-prob.detec.ai2.f100 <- matrix(NA, nrow = length(out_bd$sims.list$beta), ncol = 35)
+prob.detec.ai0.f100 <- matrix(NA, nrow = length(out_bd$sims.list$b0), ncol = 35)
+prob.detec.ai1.f100 <- matrix(NA, nrow = length(out_bd$sims.list$b1), ncol = 35)
+prob.detec.ai2.f100 <- matrix(NA, nrow = length(out_bd$sims.list$b2), ncol = 35)
 
-prob.detec.ai0.f30 <- matrix(NA, nrow = length(out_bd$sims.list$beta), ncol = 35)
-prob.detec.ai1.f30 <- matrix(NA, nrow = length(out_bd$sims.list$beta), ncol = 35)
-prob.detec.ai2.f30 <- matrix(NA, nrow = length(out_bd$sims.list$beta), ncol = 35)
+prob.detec.ai0.f30 <- matrix(NA, nrow = length(out_bd$sims.list$b0), ncol = 35)
+prob.detec.ai1.f30 <- matrix(NA, nrow = length(out_bd$sims.list$b1), ncol = 35)
+prob.detec.ai2.f30 <- matrix(NA, nrow = length(out_bd$sims.list$b2), ncol = 35)
 
 
 # Terrestrial-breeding (AI-0) - Forest cover 30%
-for (i in 1:length(out_bd$sims.list$beta)) {
+for (i in 1:length(out_bd$sims.list$b0)) {
   for (j in 1:35) { 
-    prob.detec.ai0.f30[i,j]  <- 1 - (1 - plogis(out_bd$sims.list$beta[i] + out_bd$sims.list$b0[i] + 
+    prob.detec.ai0.f30[i,j]  <- 1 - (1 - plogis(out_bd$sims.list$b0[i] + 
                                                   out_bd$sims.list$b3[i] * -1.6782 ))^j
   }
 }
 
 # Terrestrial-breeding (AI-0 ) - Forest cover 100%
-for (i in 1:length(out_bd$sims.list$beta)) {
+for (i in 1:length(out_bd$sims.list$b0)) {
   for (j in 1:35) { 
-    prob.detec.ai0.f100[i,j]  <- 1 - (1 - plogis(out_bd$sims.list$beta[i] + out_bd$sims.list$b0[i] + 
+    prob.detec.ai0.f100[i,j]  <- 1 - (1 - plogis(out_bd$sims.list$b0[i] + 
                                                    out_bd$sims.list$b3[i] * 1.4138 ))^j
   }
 }
 
 
 # Aquatic-breeding with arboreal habit (AI-1) - Forest cover 30%
-for (i in 1:length(out_bd$sims.list$beta)) {
+for (i in 1:length(out_bd$sims.list$b1)) {
   for (j in 1:35) { 
-    prob.detec.ai1.f30[i,j]  <- 1 - (1 - plogis(out_bd$sims.list$beta[i] + out_bd$sims.list$b1[i] +
+    prob.detec.ai1.f30[i,j]  <- 1 - (1 - plogis(out_bd$sims.list$b1[i] +
                                                   out_bd$sims.list$b3[i] * -1.6782))^j
   }
 }
 
 # Aquatic-breeding with arboreal habit (AI-1) - Forest cover 100%
-for (i in 1:length(out_bd$sims.list$beta)) {
+for (i in 1:length(out_bd$sims.list$b1)) {
   for (j in 1:35) { 
-    prob.detec.ai1.f100[i,j]  <- 1 - (1 - plogis(out_bd$sims.list$beta[i] + out_bd$sims.list$b1[i] +
+    prob.detec.ai1.f100[i,j]  <- 1 - (1 - plogis(out_bd$sims.list$b1[i] +
                                                    out_bd$sims.list$b3[i] * 1.4138))^j
   }
 }
 
 # Aquatic-breeding with terrestrial habit (AI-2) - Forest cover 30%
-for (i in 1:length(out_bd$sims.list$beta)) {
+for (i in 1:length(out_bd$sims.list$b2)) {
   for (j in 1:35) { 
-    prob.detec.ai2.f30[i,j]  <- 1 - (1 - plogis(out_bd$sims.list$beta[i] + out_bd$sims.list$b2[i] + 
+    prob.detec.ai2.f30[i,j]  <- 1 - (1 - plogis(out_bd$sims.list$b2[i] + 
                                                   out_bd$sims.list$b3[i] * -1.6782))^j
   }
 }
 
 # Aquatic-breeding with terrestrial habit (AI-2) - Forest cover 100%
-for (i in 1:length(out_bd$sims.list$beta)) {
+for (i in 1:length(out_bd$sims.list$b2)) {
   for (j in 1:35) { 
-    prob.detec.ai2.f100[i,j]  <- 1 - (1 - plogis(out_bd$sims.list$beta[i] + out_bd$sims.list$b2[i] + 
+    prob.detec.ai2.f100[i,j]  <- 1 - (1 - plogis(out_bd$sims.list$b2[i] + 
                                                    out_bd$sims.list$b3[i] * 1.4138))^j
   }
 }
