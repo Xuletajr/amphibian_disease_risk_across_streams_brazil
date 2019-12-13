@@ -135,7 +135,7 @@ dat2.3
     labs(x = expression(atop("Length of stream (m)", paste("within a buffer"))), 
          y = expression(paste(italic("Bd"), " occurrence probability"))) +
     theme(axis.text.x =  element_text(size = 8, angle = 45, colour = "black", hjust = 1), 
-          axis.text.y = element_text(size = 10), 
+          axis.text.y = element_text(size = 10, colour = "black"), 
           panel.grid = element_blank(), 
           strip.text.x = element_text(size = 12, color = "black"),
           strip.background = element_rect(fill="gray75")) )
