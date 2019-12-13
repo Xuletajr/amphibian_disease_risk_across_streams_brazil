@@ -193,13 +193,9 @@ ggarrange(plot_stream, plot_forest, plot_richness ,
 
 dev.off()
 
-##########################################################
-################# Infection intensity ####################
-##########################################################
-# Average Bd infection intensity across streams
-mean(out_bd$sims.list$n0)
-mean(exp(out_bd$sims.list$n0))
-
+######### ######### ######### ######### ######### ######### #########
+######### Infection intensity
+######### ######### ######### ######### ######### ######### #########
 # n1 parameter - forest cover
 out_bd$mean$n1; out_bd$q2.5$n1; out_bd$q97.5$n1
 length(which(out_bd$sims.list$n1 > 0))/3000
