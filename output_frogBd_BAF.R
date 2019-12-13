@@ -284,7 +284,7 @@ max(prev)
 mean(prev)
 
 # Prevalence of terrestrial-breeding species (AI-0) 
-round(out_bd$mean$prev.AI0,  3); round(mean(plogis(out_bd$sims.list$beta + out_bd$sims.list$b0 )),  3) 
+round(out_bd$mean$prev.AI0,  3); round(mean(plogis(out_bd$sims.list$b0 )),  3) 
 round(out_bd$q2.5$prev.AI0,  3) 
 round(out_bd$q97.5$prev.AI0, 3)
 
@@ -351,7 +351,7 @@ dat3
 
 # Exporting figure 3
 tiff(
-  "fig03e.tiff",
+  "./output_figures/fig03.tiff",
   width     = 4,
   height    = 5,
   units     = "in",
@@ -363,17 +363,18 @@ ggplot(dat3, aes(x = p, fill = AI, color = AI, group = AI)) +
   geom_density( stat = "density", alpha = .5 ,size = .8, linetype = "dashed")+
   scale_fill_manual(values = c( "#E69F00" , "#009E73", "#56B4E9"))+
   scale_color_manual(values = c( "#E69F00" , "#009E73", "#56B4E9"))+
-  theme_classic()+
-  labs(x = "", y = "") +
+  theme_classic() +
+  labs(y = "Density function", 
+       x = expression(paste(italic("Bd"), " infection prevalence"))) +
   theme(axis.text.x = element_text(size = 14, color = "black"), 
         axis.text.y = element_text(size = 14, color = "black"),
         legend.position = "top",
         legend.title = element_blank(),
-        legend.text=element_text(size=rel(1.5)),
+        legend.text = element_text(size=rel(1.5)),
         legend.key.size =  unit(0.25, "in"),
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
-        axis.title=element_text(size = 14))
+        axis.title = element_text(size = 14))
 
 dev.off()
 
