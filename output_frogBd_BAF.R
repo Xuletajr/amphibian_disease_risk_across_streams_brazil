@@ -380,10 +380,10 @@ round(out_bd$mean$b3, 3); round(out_bd$q2.5$b3, 3); round(out_bd$q97.5$b3, 3)
 # round(out_bd$q25$b3, 2); round(out_bd$q75$b3, 2); round(out_bd$sd$b3, 2)
 length(which(out_bd$sims.list$b3 > 0))/3000 # 
 
-######### ######### ######### ######### ######### ######### 
-#########  Probability of detecting Bd in a population
-#########        Two scenarios of forest cover
-######### ######### ######### ######### ######### ######### 
+######### ######### ######### ######### ######### ######### #########
+######### Probability of detecting Bd in a population
+#########          Two scenarios of forest cover
+######### ######### ######### ######### ######### ######### #########
 # 1 - (1 - p)^n  # n is the number of individuals tested
 
 prob.detec.ai0.f100 <- matrix(NA, nrow = length(out_bd$sims.list$b0), ncol = 35)
@@ -470,26 +470,31 @@ tiff(
   pointsize = 5.5
 )
 
-ggplot(dat4a, aes(x=samples, y=y,  colour=group, group=group,  pch=group)) +
+(plot_4a <- ggplot(dat4a, aes(x=samples, y=y,  colour=group, group=group,  pch=group)) +
   geom_line(alpha = 0.9) +
   geom_point(size = 2.5,  alpha = 0.8) +
   scale_fill_manual(values = c( "#E69F00" , "#009E73", "#56B4E9"))+
   scale_color_manual(values = c( "#E69F00" , "#009E73", "#56B4E9"))+
-  labs(x = "", y = "") +
+  labs(x = "Number of amphibians sampled", y = "Cumulative detection probability") +
+  #labs(x = "", y = "") +
   scale_y_continuous(breaks = seq(0, 1, 0.25), limits = c(0,1)) +
   scale_x_continuous(breaks = seq(0, 35, 5), limits = c(0,35)) +
-  labs(shape="Aquatic index") +
+  #labs(shape = "Aquatic index") +
   geom_hline(yintercept = 0.95, linetype = "dashed") +
   theme_bw( ) +
-  #ggtitle("Forest cover - 30%")+
-  theme(legend.position = "none",
+  ggtitle("Forest cover - 30%") +
+  theme(legend.position = "top",#"none",
+        legend.title = element_blank(),
+        legend.text = element_text(size=rel(1.5)),
+        legend.key.size =  unit(0.25, "in"),
+        legend.background = element_rect(fill = "white", size = 0.5, 
+                                         linetype = "solid", colour = "darkblue"),
         axis.text.x = element_text(size = 12, color = "black"), 
         axis.text.y = element_text(size = 12, color = "black"), 
-        axis.title.y = element_blank(), 
-        axis.title.x = element_blank(),
-        panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(),
-        plot.title = element_text(size=14, face="bold", hjust = 0.5))
+        #axis.title.y = element_blank(), 
+        #axis.title.x = element_blank(),
+        panel.grid = element_blank(), 
+        plot.title = element_text(size = 14, hjust = 0.0, vjust = 2.12)))
 
 dev.off()
 
@@ -503,7 +508,7 @@ tiff(
 )
 
 
-ggplot(dat4b, aes(x=samples, y=y, colour=group, group=group,  pch=group)) +
+(plot_5a <- ggplot(dat4b, aes(x=samples, y=y, colour=group, group=group,  pch=group)) +
   geom_line(alpha = 0.9) +
   geom_point(size = 2.5, alpha = 0.8) +
   scale_fill_manual(values = c( "#E69F00" , "#009E73", "#56B4E9"))+
@@ -514,7 +519,7 @@ ggplot(dat4b, aes(x=samples, y=y, colour=group, group=group,  pch=group)) +
   labs(shape="Aquatic index") +
   geom_hline(yintercept = 0.95, linetype = "dashed") +
   theme_bw( ) +
-  #ggtitle("Forest cover - 100%")+
+  ggtitle("Forest cover - 100%")+
   theme(legend.position = "none",
         axis.text.x = element_text(size = 12, color = "black"), 
         axis.text.y = element_text(size = 12, color = "black"), 
@@ -522,7 +527,7 @@ ggplot(dat4b, aes(x=samples, y=y, colour=group, group=group,  pch=group)) +
         axis.title.x = element_blank(),
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
-        plot.title = element_text(size=14, face="bold", hjust = 0.5))
+        plot.title = element_text(size = 14, hjust = 0.0, vjust = 2.12)))
 
 
 dev.off()
