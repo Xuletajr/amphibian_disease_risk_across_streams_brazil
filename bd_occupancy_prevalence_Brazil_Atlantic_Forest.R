@@ -38,7 +38,6 @@ sum(bd.pres, na.rm=T)
 
 # Remove 0s from intensity data
 bd.intensity[bd.intensity == 0] <- NA
-#bd.intensity <- log(bd.intensity)
 
 # Total number of swabs collected
 bd.pres2 <- ifelse(bd.pres == 0, 1, 1)
