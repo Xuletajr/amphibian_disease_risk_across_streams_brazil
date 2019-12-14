@@ -47,7 +47,12 @@ frog_intensity[frog_intensity == 0] <- NA
 min(frog_intensity, na.rm=T)
 max(frog_intensity, na.rm=T)
 
-mean(frog_intensity, na.rm = T)
+# Mean, sd, Median, iqr
+mean(as.matrix(frog_intensity), na.rm = T)
+sd(as.matrix(frog_intensity), na.rm = T)
+median(as.matrix(frog_intensity), na.rm = T)
+# I estimated de IQR in the excel
+IQR(as.matrix(frog_intensity), na.rm = TRUE, type = 8)
 
 ###############################################
 ###         Aquatic index
