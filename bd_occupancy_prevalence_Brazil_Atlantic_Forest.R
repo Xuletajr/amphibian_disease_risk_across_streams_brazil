@@ -39,9 +39,15 @@ sum(bd.pres, na.rm=T)
 # Remove 0s from intensity data
 bd.intensity[bd.intensity == 0] <- NA
 
-# Total number of swabs collected
-bd.pres2 <- ifelse(bd.pres == 0, 1, 1)
-sum(bd.pres2, na.rm = TRUE)
+# Summary of Bd intesity 
+min(bd.intensity, na.rm=T)
+frog_intensity <- bd.intensity
+frog_intensity[frog_intensity == 0] <- NA
+
+min(frog_intensity, na.rm=T)
+max(frog_intensity, na.rm=T)
+
+mean(frog_intensity, na.rm = T)
 
 ###############################################
 ###         Aquatic index
