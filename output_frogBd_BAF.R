@@ -139,8 +139,8 @@ dat2.3
     geom_ribbon(aes(ymin = LL, ymax = UL, fill = covariates), 
                 alpha =.3) +
     geom_line(aes(colour = covariates), size = 1) + 
-    scale_colour_manual("", values = "black") +
-    scale_fill_manual("", values = "gray50")  +
+    scale_colour_manual("", values = "#0072B2") +
+    scale_fill_manual("", values = "#56B4E9")  +
     theme_bw () +
     theme(legend.position = "none") +
     labs(x = expression(atop("Length of stream (m)", paste("within a buffer"))), 
@@ -156,8 +156,8 @@ dat2.3
     geom_ribbon(aes(ymin = LL, ymax = UL, fill = covariates), 
                 alpha =.3) +
     geom_line(aes(colour = covariates), size = 1) + 
-    scale_colour_manual("", values = "black") +
-    scale_fill_manual("", values = "gray50")  +
+    scale_colour_manual("", values = "#0072B2") +
+    scale_fill_manual("", values = "#56B4E9")  +
     theme_bw () +
     theme(legend.position = "none") +
     xlab("Forest cover (%)") +
@@ -173,8 +173,8 @@ dat2.3
     geom_ribbon(aes(ymin = LL, ymax = UL, fill = covariates), 
                 alpha =.3) +
     geom_line(aes(colour = covariates), size = 1) + 
-    scale_colour_manual("", values = "black") +
-    scale_fill_manual("", values = "gray50")  +
+    scale_colour_manual("", values = "#0072B2") +
+    scale_fill_manual("", values = "#56B4E9")  +
     theme_bw () +
     theme(legend.position = "none") +
     xlab("Number of amphibians") +
@@ -185,7 +185,7 @@ dat2.3
           strip.text.x = element_text(size = 12, color = "black"),
           strip.background = element_rect(fill="gray75")) ) 
 
-# Load ggplot2 package
+# Load ggpubr package
 library(ggpubr)
 
 # Figure 2 Draft
