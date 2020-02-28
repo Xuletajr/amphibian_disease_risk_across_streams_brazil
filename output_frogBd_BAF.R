@@ -35,7 +35,12 @@ out_bd$sd$mean.occ    # sd
 dat.occ <- data.frame(occ_site = out_bd$sims.list$mean.occ)
 
 ggplot(dat.occ, aes(x = occ_site)) + 
-  geom_histogram(color="black", fill="white", binwidth=1) 
+  geom_histogram(color = "black", fill = "white", binwidth = 1) +
+  xlab("Number of occupied sites by Bd") + 
+  ylab("Count of the posterior distribution") +
+  theme(axis.text.x = element_text(size = 12, color = "black"), 
+        axis.text.y = element_text(size = 12, color = "black"),
+        axis.title = element_text(color = "black", size = 12, face = "bold")) 
 
 
 hist(out_bd$sims.list$mean.occ, breaks=25, col="grey70", ylim=c(0,300), xlab="Number of occupied sites by Bd")
