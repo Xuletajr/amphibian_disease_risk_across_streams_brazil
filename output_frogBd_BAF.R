@@ -3,9 +3,6 @@
 #####         Atlantic Rainforest---- Output analysis and plots         #####
 #############################################################################
 
-# Clear memory
-rm(list=ls(all=TRUE))
-
 # Check the filepath for the working directory
 getwd()                                                              
 
