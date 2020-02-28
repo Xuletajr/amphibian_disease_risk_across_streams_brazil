@@ -26,7 +26,10 @@ traceplot(out_bd)
 ######### ######### ######### ######### ######### 
 
 ### Number of occupied sites
-out_bd$mean$mean.occ; out_bd$q2.5$mean.occ; out_bd$q97.5$mean.occ; out_bd$sd$mean.occ
+out_bd$mean$mean.occ  # mean
+out_bd$q2.5$mean.occ  # CI-2.5
+out_bd$q97.5$mean.occ # CI-97.5 
+out_bd$sd$mean.occ    # sd
 
 # Plot number of occupied sites by Bd 
 hist(out_bd$sims.list$mean.occ, breaks=25, col="grey70", ylim=c(0,300), xlab="Number of occupied sites by Bd")
