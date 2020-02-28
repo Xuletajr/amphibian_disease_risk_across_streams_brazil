@@ -35,14 +35,16 @@ out_bd$sd$mean.occ    # sd
 dat.occ <- data.frame(occ_site = out_bd$sims.list$mean.occ)
 
 ggplot(dat.occ, aes(x = occ_site)) + 
-  geom_histogram(color = "black", fill = "white", binwidth = 1) +
-  geom_density(alpha = 0.1, fill="blue") +
+  #geom_histogram(color = "black", fill = "white", binwidth = 1) +
+  geom_histogram(aes(y = ..density..), binwidth = 1, 
+                 colour = "black", fill = "white") +
+  geom_density(alpha = 0.5, fill="blue") +
   xlab("Number of streams occupied sites by Bd") + 
     ylab("Frequency") +
   geom_vline(aes(xintercept = 26), color = "red", linetype = "dashed", size = 1) +
-  geom_vline(aes(xintercept = out_bd$mean$mean.occ), color = "black", linetype = "dashed", size = 1) +
-  geom_vline(aes(xintercept = out_bd$q2.5$mean.occ), color = "black", linetype = "dotted", size = 1) +
-  geom_vline(aes(xintercept = out_bd$q97.5$mean.occ), color = "black", linetype = "dotted", size = 1) +
+  geom_vline(aes(xintercept = out_bd$mean$mean.occ), color = "blue", linetype = "dashed", size = 1) +
+  geom_vline(aes(xintercept = out_bd$q2.5$mean.occ), color = "blue", linetype = "dotted", size = 1) +
+  geom_vline(aes(xintercept = out_bd$q97.5$mean.occ), color = "blue", linetype = "dotted", size = 1) +
   theme(axis.text.x = element_text(size = 12, color = "black"), 
         axis.text.y = element_text(size = 12, color = "black"),
         axis.title = element_text(color = "black", size = 12, face = "bold")) 
