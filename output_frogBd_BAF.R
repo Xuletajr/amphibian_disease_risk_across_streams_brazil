@@ -35,19 +35,24 @@ out_bd$sd$mean.occ    # sd
 dat.occ <- data.frame(occ_site = out_bd$sims.list$mean.occ)
 
 ggplot(dat.occ, aes(x = occ_site)) + 
-  #geom_histogram(color = "black", fill = "white", binwidth = 1) +
   geom_histogram(aes(y = ..density..), binwidth = 1, 
                  colour = "black", fill = "white") +
-  geom_density(alpha = 0.5, fill="blue") +
-  xlab("Number of streams occupied sites by Bd") + 
-    ylab("Frequency") +
+  geom_density(alpha = 0.4, fill = "blue") +
+  labs(title = expression(paste("Posterior distribution of number of sampled sites occupied by ", 
+                                italic(Bd)," infected frogs")),
+       x ="Number of streams", y = "Frequency") +
   geom_vline(aes(xintercept = 26), color = "red", linetype = "dashed", size = 1) +
-  geom_vline(aes(xintercept = out_bd$mean$mean.occ), color = "blue", linetype = "dashed", size = 1) +
+  geom_vline(aes(xintercept = out_bd$mean$mean.occ), color = "blue", linetype = "solid", size = 1) +
   geom_vline(aes(xintercept = out_bd$q2.5$mean.occ), color = "blue", linetype = "dotted", size = 1) +
   geom_vline(aes(xintercept = out_bd$q97.5$mean.occ), color = "blue", linetype = "dotted", size = 1) +
-  theme(axis.text.x = element_text(size = 12, color = "black"), 
-        axis.text.y = element_text(size = 12, color = "black"),
-        axis.title = element_text(color = "black", size = 12, face = "bold")) 
+  #theme_classic() +
+  theme(axis.text.x = element_text(size = 12, color = "black", margin = margin(0, 0, 10, 0)), 
+        axis.text.y = element_text(size = 12, color = "black", margin = margin(0, 0, 0, 10)),
+        axis.title = element_text(color = "black", size = 12, face = "bold"),
+        plot.title = element_text(hjust = 0.5, margin = margin(0, 0, 30, 0))) 
+
+expression("Posterior distribution of number of sampled sites occupied by", 
+             italic(Bd),"infected frogs X")
 
 #####
 ### Occupancy probability
