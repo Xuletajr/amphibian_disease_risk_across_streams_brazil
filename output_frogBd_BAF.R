@@ -31,7 +31,13 @@ out_bd$q2.5$mean.occ  # CI-2.5
 out_bd$q97.5$mean.occ # CI-97.5 
 out_bd$sd$mean.occ    # sd
 
-# Plot number of occupied sites by Bd 
+# Plot number of occupied sites by Bd
+dat.occ <- data.frame(occ_site = out_bd$sims.list$mean.occ)
+
+ggplot(dat.occ, aes(x = occ_site)) + 
+  geom_histogram(color="black", fill="white", binwidth=1) 
+
+
 hist(out_bd$sims.list$mean.occ, breaks=25, col="grey70", ylim=c(0,300), xlab="Number of occupied sites by Bd")
 abline(v=out_bd$mean$mean.occ, lwd = 3, lty=2, col="red")
 
