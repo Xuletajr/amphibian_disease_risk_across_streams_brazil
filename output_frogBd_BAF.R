@@ -96,7 +96,7 @@ sort(ric)
 ###
 # Like Kery and Royle (2015)
 nsamp <- length(out_bd$sims.list$a0)
-pred.occ <- array(NA, dim=c(50, nsamp, 3))
+pred.occ <- array(NA, dim = c(50, nsamp, 3))
 dim(pred.occ)
 
 for(i in 1:nsamp){
@@ -137,7 +137,7 @@ dat2.3
 # Preparing plot for stream density. 
 (plot_stream <- ggplot(dat2.1, aes(cov.seq, occ.mean)) +
     geom_ribbon(aes(ymin = LL, ymax = UL, fill = covariates), 
-                alpha =.3) +
+                alpha = 0.3) +
     geom_line(aes(colour = covariates), size = 1) + 
     scale_colour_manual("", values = "#0072B2") +
     scale_fill_manual("", values = "#56B4E9")  +
