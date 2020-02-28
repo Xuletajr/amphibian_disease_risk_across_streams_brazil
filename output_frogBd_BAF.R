@@ -162,7 +162,7 @@ dat2.3
     scale_fill_manual("", values = "gray50")  +
     theme_bw () +
     theme(legend.position = "none") +
-    xlab("Number of species") +
+    xlab("Number of amphibians") +
     ylab(NULL) +
     theme(axis.text.x = element_text(size = 8, angle = 45, colour = "black", hjust = 1), 
           axis.text.y = element_blank(), 
