@@ -188,7 +188,7 @@ dat2.3
 # Load ggpubr package
 library(ggpubr)
 
-# Figure 2 Draft
+# Figure 2 published
 tiff(
   "./output_figures/fig02.tiff",
   width     = 6.5,
