@@ -143,8 +143,10 @@ dat2.3
     scale_fill_manual("", values = "#56B4E9")  +
     theme_bw () +
     theme(legend.position = "none") +
+    #xlab(expression(atop("Length of stream (m)", paste("within a buffer"))) +
     labs(x = expression(atop("Length of stream (m)", paste("within a buffer"))), 
-         y = expression(paste(italic("Bd"), " occurrence probability"))) +
+         y = NULL) +
+    #ylab(NULL) +
     theme(axis.text.x =  element_text(size = 8, angle = 45, colour = "black", hjust = 1), 
           axis.text.y = element_text(size = 10, colour = "black"), 
           panel.grid = element_blank(), 
@@ -160,8 +162,8 @@ dat2.3
     scale_fill_manual("", values = "#56B4E9")  +
     theme_bw () +
     theme(legend.position = "none") +
-    xlab("Forest cover (%)") +
-    ylab(NULL) +
+    labs(x = "Forest cover (%)", 
+         y = NULL) +
     theme(axis.text.x = element_text(size = 8, angle = 45, colour = "black", hjust = 1), 
           axis.text.y = element_blank(), 
           panel.grid = element_blank(), 
@@ -177,8 +179,8 @@ dat2.3
     scale_fill_manual("", values = "#56B4E9")  +
     theme_bw () +
     theme(legend.position = "none") +
-    xlab("Number of amphibians") +
-    ylab(NULL) +
+    labs(x = "Number of amphibians", 
+        y = NULL) +
     theme(axis.text.x = element_text(size = 8, angle = 45, colour = "black", hjust = 1), 
           axis.text.y = element_blank(), 
           panel.grid = element_blank(), 
@@ -190,7 +192,7 @@ library(ggpubr)
 
 # Figure 2 published
 tiff(
-  "./output_figures/fig02.tiff",
+  "./output_figures/fig02b.tiff",
   width     = 6.5,
   height    = 3,
   units     = "in",
