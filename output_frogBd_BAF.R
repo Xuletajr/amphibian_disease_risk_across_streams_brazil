@@ -217,7 +217,7 @@ dat2
 
 ggplot(dat2, aes(cov.seq, occ.mean)) +
   geom_ribbon(aes(ymin = LL, ymax = UL, fill = covariates), 
-              alpha =.4) +
+              alpha = .4) +
   geom_line(aes(colour = covariates), size = 1) + 
   scale_colour_manual("", values=c("#0072B2", "#0072B2", "#0072B2")) +
   scale_fill_manual("", values=c("#56B4E9", "#56B4E9", "#56B4E9"))  +
@@ -225,15 +225,16 @@ ggplot(dat2, aes(cov.seq, occ.mean)) +
   theme_bw () +
   labs(x = "", y = expression(paste(italic(Bd), 
                                     " occurrence probability"))) +
-  theme(axis.text.x  = element_text(size = 12, color = "black", angle = 45, vjust = 0.5), 
+  theme(axis.text.x  = element_text(size = 12, color = "black", 
+                                    angle = 45, vjust = 0.9, hjust = 0.9), 
         axis.text.y  = element_text(size = 12, color = "black"), 
         legend.title = element_text(size = 12, color = "black"),
         legend.text  = element_text(size = 12, color = "black"),
-        panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(),
         strip.text.x = element_text(size = 12, color = "black"),
         strip.background = element_rect(fill = "#56B4E9"), #"gray75"
-        axis.title = element_text(size = 12), 
+        axis.title = element_text(size = 12),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
         legend.position = "none")
 
 ######### ######### ######### ######### ######### ######### #########
