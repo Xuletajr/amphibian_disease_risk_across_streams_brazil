@@ -110,147 +110,54 @@ for(i in 1:nsamp){
 (occ.ci <- apply(pred.occ, c(1,3), function(x) quantile(x,prob=c(0.025,0.975))))
 
 # Putting all data in data frame
-dat2.1 <- data.frame(occ.mean = occ.mean[,2],
-                   cov.seq = original.hydro.pred,
-                   LL = occ.ci[1,,2],
-                   UL = occ.ci[2,,2],
-                   covariates = factor(rep("Stream density", 50 )))
-                   
-dat2.1
-
-dat2.2 <- data.frame(occ.mean = occ.mean[,1],
-                     cov.seq = original.for.pred,
-                     LL =  occ.ci[1,,1],
-                     UL =  occ.ci[2,,1],
-                     covariates = factor(rep("Forest cover", 50 )))
-                     
-dat2.2                                                     
-                                                                                                        
-dat2.3 <- data.frame(occ.mean = occ.mean[,3],
-                     cov.seq =  original.ric.pred,
-                     LL = occ.ci[1,,3],
-                     UL = occ.ci[2,,3],
-                     covariates  = factor(rep("Amphibian richness", 50 ))) 
-                                         
-dat2.3
-
-# Preparing plot for stream density. 
-(plot_stream <- ggplot(dat2.1, aes(cov.seq, occ.mean)) +
-    geom_ribbon(aes(ymin = LL, ymax = UL, fill = covariates), 
-                alpha = 0.3) +
-    geom_line(aes(colour = covariates), size = 1) + 
-    scale_colour_manual("", values = "#0072B2") +
-    scale_fill_manual("", values = "#56B4E9")  +
-    theme_bw () +
-    theme(legend.position = "none") +
-    labs(x = expression(atop("Length of stream (m)", paste("within a buffer"))), 
-         y = expression(paste(italic(Bd), 
-                              " occurrence probability"))) +
-    theme(axis.text.x =  element_text(size = 8, angle = 45, colour = "black", hjust = 1), 
-          axis.text.y = element_blank(), #element_text(size = 10, colour = "black"), 
-          panel.grid = element_blank(), 
-          strip.text.x = element_text(size = 12, color = "black"),
-          strip.background = element_rect(fill="gray75")) )
-
-# Preparing plot for forest cover
-(plot_forest <- ggplot(dat2.2, aes(cov.seq, occ.mean)) +
-    geom_ribbon(aes(ymin = LL, ymax = UL, fill = covariates), 
-                alpha =.3) +
-    geom_line(aes(colour = covariates), size = 1) + 
-    scale_colour_manual("", values = "#0072B2") +
-    scale_fill_manual("", values = "#56B4E9")  +
-    theme_bw () +
-    theme(legend.position = "none") +
-    labs(x = "Forest cover (%)", 
-         y = NULL) +
-    theme(axis.text.x = element_text(size = 8, angle = 45, colour = "black", hjust = 1), 
-          axis.text.y = element_blank(), 
-          panel.grid = element_blank(), 
-          strip.text.x = element_text(size = 12, color = "black"),
-          strip.background = element_rect(fill="gray75")) )
-
-# Preparing plot for frog species richness
-(plot_richness <- ggplot(dat2.3, aes(cov.seq, occ.mean)) +
-    geom_ribbon(aes(ymin = LL, ymax = UL, fill = covariates), 
-                alpha =.3) +
-    geom_line(aes(colour = covariates), size = 1) + 
-    scale_colour_manual("", values = "#0072B2") +
-    scale_fill_manual("", values = "#56B4E9")  +
-    theme_bw () +
-    theme(legend.position = "none") +
-    labs(x = "Number of amphibian species", 
-        y = NULL) +
-    theme(axis.text.x = element_text(size = 8, angle = 45, colour = "black", hjust = 1), 
-          axis.text.y = element_blank(), 
-          panel.grid = element_blank(), 
-          strip.text.x = element_text(size = 12, color = "black"),
-          strip.background = element_rect(fill="gray75")) ) 
-
-# Load ggpubr package
-library(ggpubr)
-
-# Figure 2 published
-tiff(
-  "./output_figures/fig02b.tiff",
-  width     = 6.5,
-  height    = 3,
-  units     = "in",
-  res       = 900,
-  pointsize = 5.5
-)
-
-# Grouping the 3 plots in only one figure
-ggarrange(plot_stream, plot_forest, plot_richness , 
-          ncol = 3, nrow = 1, align = "hv", hjust = 100)
-
-
-dev.off()
-
-
-
-
 dat2 <- data.frame(occ.mean = c(occ.mean[,2], occ.mean[,1],  occ.mean[,3]),
                    cov.seq = c(original.hydro.pred, original.for.pred, 
                                original.ric.pred),
                    LL = c(occ.ci[1,,2], occ.ci[1,,1], occ.ci[1,,3]),
                    UL = c(occ.ci[2,,2], occ.ci[2,,1], occ.ci[2,,3]),
                    covariates  = factor(rep(1:3, each = 50), levels = 1:3, 
-                                        labels = c("Stream density", "Forest cover", 
-                                                   "Amphibian richness")))
-dat2
-
-
+                                        labels = c("Stream_density", "Forest_cover", 
+                                                   "Amphibian_richness")))
 
 dat2
+
+tiff(
+  "./output_figures/fig02.tiff",
+  width     = 6.5,
+  height    = 3.5,
+  units     = "in",
+  res       = 600,
+  pointsize = 6
+)
 
 ggplot(dat2, aes(cov.seq, occ.mean)) +
   geom_ribbon(aes(ymin = LL, ymax = UL, fill = covariates), 
-              alpha = .4) +
+              alpha = .5) +
   geom_line(aes(colour = covariates), size = 1) + 
   scale_colour_manual("", values=c("#0072B2", "#0072B2", "#0072B2")) +
   scale_fill_manual("", values=c("#56B4E9", "#56B4E9", "#56B4E9"))  +
   facet_wrap( ~ covariates, nrow = 1, scales = "free_x", strip.position = "bottom", 
-              labeller = as_labeller(c("Stream density" = expression(atop("Length of stream (m)", paste("within a buffer"))), 
-                                       "Amphibian richness" = "Number of amphibian species", 
-                                       "Forest cover" = "Forest cover (%)") )) + 
+              labeller = as_labeller(c(Stream_density = "Length of stream (m)\n within a buffer", #expression(atop("Length of stream (m)", paste("within a buffer"))) 
+                                       Amphibian_richness = "Number of amphibian \nspecies", 
+                                       Forest_cover = "Forest cover (%)\n") )) + 
   theme_bw () +
- # labs(x = NULL, y = expression(paste(italic(Bd), 
-  #                                  " occurrence probability"))) +
   ylab(expression(paste(italic(Bd), 
                        " occurrence probability"))) +
   xlab(NULL) +
-  theme(axis.text.x  = element_text(size = 12, color = "black", 
+  theme(axis.text.x  = element_text(size = 10, color = "black", family = "sans",
                                     angle = 45, vjust = 0.9, hjust = 0.9), 
-        axis.text.y  = element_text(size = 12, color = "black"), 
-        strip.text.x = element_text(size = 12, color = "black"),
-       # strip.background = element_rect(fill = "#56B4E9"), #"gray75"
-        axis.title = element_text(size = 12),
+        axis.text.y  = element_text(size = 10, color = "black", family = "sans"), 
+        strip.text.x = element_text(size = 10, color = "black", family = "sans"),
+        axis.title = element_text(size = 10, family = "sans"),
+        strip.background = element_blank(),
+        strip.placement = "outside",
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
-        legend.position = "none")
+        legend.position = "none",
+        panel.spacing = unit(1.7, "lines"))
 
 
-
+dev.off()
 
 ######### ######### ######### ######### ######### ######### #########
 ######### Infection intensity
