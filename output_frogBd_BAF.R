@@ -221,18 +221,16 @@ ggplot(dat2, aes(cov.seq, occ.mean)) +
   geom_line(aes(colour = covariates), size = 1) + 
   scale_colour_manual("", values=c("#0072B2", "#0072B2", "#0072B2")) +
   scale_fill_manual("", values=c("#56B4E9", "#56B4E9", "#56B4E9"))  +
-  facet_wrap( ~ covariates, nrow = 1, scales = "free_x", strip.position = "top", 
+  facet_wrap( ~ covariates, nrow = 1, scales = "free_x", strip.position = "bottom", 
               labeller = as_labeller(c("Stream density" = expression(atop("Length of stream (m)", paste("within a buffer"))), 
                                        "Amphibian richness" = "Number of amphibian species", 
                                        "Forest cover" = "Forest cover (%)") )) + 
   theme_bw () +
-  labs(x = "", y = expression(paste(italic(Bd), 
+  labs(x = NULL, y = expression(paste(italic(Bd), 
                                     " occurrence probability"))) +
   theme(axis.text.x  = element_text(size = 12, color = "black", 
                                     angle = 45, vjust = 0.9, hjust = 0.9), 
         axis.text.y  = element_text(size = 12, color = "black"), 
-        legend.title = element_text(size = 12, color = "black"),
-        legend.text  = element_text(size = 12, color = "black"),
         strip.text.x = element_text(size = 12, color = "black"),
        # strip.background = element_rect(fill = "#56B4E9"), #"gray75"
         axis.title = element_text(size = 12),
