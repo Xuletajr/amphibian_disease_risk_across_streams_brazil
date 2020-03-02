@@ -143,10 +143,9 @@ dat2.3
     scale_fill_manual("", values = "#56B4E9")  +
     theme_bw () +
     theme(legend.position = "none") +
-    #xlab(expression(atop("Length of stream (m)", paste("within a buffer"))) +
     labs(x = expression(atop("Length of stream (m)", paste("within a buffer"))), 
-         y = NULL) +
-    #ylab(NULL) +
+         y = expression(paste(italic(Bd), 
+                              " occurrence probability"))) +
     theme(axis.text.x =  element_text(size = 8, angle = 45, colour = "black", hjust = 1), 
           axis.text.y = element_blank(), #element_text(size = 10, colour = "black"), 
           panel.grid = element_blank(), 
