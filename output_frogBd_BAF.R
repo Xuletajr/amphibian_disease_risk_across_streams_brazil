@@ -209,7 +209,15 @@ dev.off()
 
 
 
-
+dat2 <- data.frame(occ.mean = c(occ.mean[,2], occ.mean[,1],  occ.mean[,3]),
+                   cov.seq = c(original.hydro.pred, original.for.pred, 
+                               original.ric.pred),
+                   LL = c(occ.ci[1,,2], occ.ci[1,,1], occ.ci[1,,3]),
+                   UL = c(occ.ci[2,,2], occ.ci[2,,1], occ.ci[2,,3]),
+                   covariates  = factor(rep(1:3, each = 50), levels = 1:3, 
+                                        labels = c("Stream density", "Forest cover", 
+                                                   "Amphibian richness")))
+dat2
 
 
 
@@ -226,8 +234,11 @@ ggplot(dat2, aes(cov.seq, occ.mean)) +
                                        "Amphibian richness" = "Number of amphibian species", 
                                        "Forest cover" = "Forest cover (%)") )) + 
   theme_bw () +
-  labs(x = NULL, y = expression(paste(italic(Bd), 
-                                    " occurrence probability"))) +
+ # labs(x = NULL, y = expression(paste(italic(Bd), 
+  #                                  " occurrence probability"))) +
+  ylab(expression(paste(italic(Bd), 
+                       " occurrence probability"))) +
+  xlab(NULL) +
   theme(axis.text.x  = element_text(size = 12, color = "black", 
                                     angle = 45, vjust = 0.9, hjust = 0.9), 
         axis.text.y  = element_text(size = 12, color = "black"), 
@@ -237,6 +248,9 @@ ggplot(dat2, aes(cov.seq, occ.mean)) +
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
         legend.position = "none")
+
+
+
 
 ######### ######### ######### ######### ######### ######### #########
 ######### Infection intensity
