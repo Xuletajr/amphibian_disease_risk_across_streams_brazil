@@ -178,7 +178,7 @@ dat2.3
     scale_fill_manual("", values = "#56B4E9")  +
     theme_bw () +
     theme(legend.position = "none") +
-    labs(x = "Number of amphibians", 
+    labs(x = "Number of amphibian species", 
         y = NULL) +
     theme(axis.text.x = element_text(size = 8, angle = 45, colour = "black", hjust = 1), 
           axis.text.y = element_blank(), 
@@ -200,18 +200,8 @@ tiff(
 )
 
 # Grouping the 3 plots in only one figure
-figure2 <- ggarrange(plot_stream, plot_forest, plot_richness , 
+ggarrange(plot_stream, plot_forest, plot_richness , 
           ncol = 3, nrow = 1, align = "hv", hjust = 100)
-
-annotate_figure(figure2,
-                top = NULL,
-                bottom = NULL,
-                left = text_grob(expression(paste(italic(Bd), 
-                                                  " occurrence probability")), color = "black", rot = 90),
-                right = NULL,
-                fig.lab = NULL,
-                fig.lab.size = 12)
-
 
 
 dev.off()
