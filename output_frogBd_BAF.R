@@ -195,6 +195,7 @@ dat6 <- data.frame(int.mean = c(int.mean[,2], int.mean[,1]),
 
 
 # Figure 6 - Figure was not included in the manuscript
+# PRECISO REVISAR ESTA FIGURA PARA QUANDO ABRIR O CÓDIGO....
 tiff(
   "./output_figures/fig06.tiff",
   width     = 6.5,
