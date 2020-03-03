@@ -318,7 +318,7 @@ dat3
 
 # Exporting figure 3
 tiff(
-  "./output_figures/fig03.tiff",
+  "./output_figures/fig03b.tiff",
   width     = 4,
   height    = 5,
   units     = "in",
@@ -326,26 +326,27 @@ tiff(
   pointsize = 4
 ) 
 
-#ggplot(dat3, aes(x = p, fill = AI, color = AI, group = AI)) + 
 ggplot(dat3, aes(x = p)) +
-  geom_density(aes(fill = AI, color = AI, linetype  = AI), stat = "density", alpha = .4, size = .7) + #c("dashed", "solid", "dot")
+  geom_density(aes(fill = AI, color = AI, linetype  = AI), stat = "density", alpha = .4, size = .6) + #c("dashed", "solid", "dot")
   scale_fill_manual(values = c( "#E69F00" , "#009E73", "#56B4E9")) +
   scale_color_manual(values = c( "#E69F00" , "#009E73", "#56B4E9")) +
-  #scale_linetype_identity
-  scale_linetype_manual(values = c("solid", "dashed", "dotted")) + #"dashed", "solid", "dotted"
-  theme_classic() +
-  xlim(0, 1) +
-  labs(y = "Density function", 
+  scale_linetype_manual(values = c("solid", "dashed", "dotted")) +
+  labs(title = "Aquatic index", 
+       y = "Density function", 
        x = expression(paste(italic("Bd"), " infection prevalence"))) +
+    xlim(0, 1) +
+  theme_classic()+
   theme(axis.text.x = element_text(size = 10, color = "black", family = "sans", hjust = 0.5), 
         axis.text.y = element_text(size = 10, color = "black", family = "sans"),
+        axis.title = element_text(size = 11),
+        panel.grid = element_blank(),
         legend.position = "top",
+        legend.title.align = 0.5 , 
         legend.title = element_blank(),
         legend.text = element_text(size = rel(1.5),  family = "sans"),
-        legend.key.size =  unit(0.25, "in"),
-        panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(),
-        axis.title = element_text(size = 11))
+        legend.key.size =  unit(0.3, "in"),
+        legend.box.spacing = unit(1, 'cm'),
+        panel.spacing.x = )
 
 dev.off()
 
