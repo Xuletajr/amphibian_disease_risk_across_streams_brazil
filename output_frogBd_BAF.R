@@ -326,22 +326,26 @@ tiff(
   pointsize = 4
 ) 
 
-ggplot(dat3, aes(x = p, fill = AI, color = AI, group = AI)) + 
-  geom_density( stat = "density", alpha = .5 ,size = .8, linetype = "dashed")+
-  scale_fill_manual(values = c( "#E69F00" , "#009E73", "#56B4E9"))+
-  scale_color_manual(values = c( "#E69F00" , "#009E73", "#56B4E9"))+
+#ggplot(dat3, aes(x = p, fill = AI, color = AI, group = AI)) + 
+ggplot(dat3, aes(x = p)) +
+  geom_density(aes(fill = AI, color = AI, linetype  = AI), stat = "density", alpha = .4, size = .7) + #c("dashed", "solid", "dot")
+  scale_fill_manual(values = c( "#E69F00" , "#009E73", "#56B4E9")) +
+  scale_color_manual(values = c( "#E69F00" , "#009E73", "#56B4E9")) +
+  #scale_linetype_identity
+  scale_linetype_manual(values = c("solid", "dashed", "dotted")) + #"dashed", "solid", "dotted"
   theme_classic() +
+  xlim(0, 1) +
   labs(y = "Density function", 
        x = expression(paste(italic("Bd"), " infection prevalence"))) +
-  theme(axis.text.x = element_text(size = 14, color = "black"), 
-        axis.text.y = element_text(size = 14, color = "black"),
+  theme(axis.text.x = element_text(size = 10, color = "black", family = "sans", hjust = 0.5), 
+        axis.text.y = element_text(size = 10, color = "black", family = "sans"),
         legend.position = "top",
         legend.title = element_blank(),
-        legend.text = element_text(size=rel(1.5)),
+        legend.text = element_text(size = rel(1.5),  family = "sans"),
         legend.key.size =  unit(0.25, "in"),
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
-        axis.title = element_text(size = 14))
+        axis.title = element_text(size = 11))
 
 dev.off()
 
