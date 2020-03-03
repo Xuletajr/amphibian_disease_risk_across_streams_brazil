@@ -137,7 +137,7 @@ ggplot(dat2, aes(cov.seq, occ.mean)) +
   scale_colour_manual("", values=c("#0072B2", "#0072B2", "#0072B2")) +
   scale_fill_manual("", values=c("#56B4E9", "#56B4E9", "#56B4E9"))  +
   facet_wrap( ~ covariates, nrow = 1, scales = "free_x", strip.position = "bottom", 
-              labeller = as_labeller(c(Stream_density = "Length of stream (m)\n within a buffer", #expression(atop("Length of stream (m)", paste("within a buffer"))) 
+              labeller = as_labeller(c(Stream_density = "Length of stream \n within a buffer (m)", #expression(atop("Length of stream (m)", paste("within a buffer"))) 
                                        Amphibian_richness = "Number of amphibian \nspecies", 
                                        Forest_cover = "Forest cover (%)\n") )) + 
   theme_bw () +
