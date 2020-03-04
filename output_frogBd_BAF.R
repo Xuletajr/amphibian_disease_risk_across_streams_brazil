@@ -327,12 +327,11 @@ tiff(
 ) 
 
 ggplot(dat3, aes(x = p)) +
-  geom_density(aes(fill = AI, color = AI, linetype  = AI), stat = "density", alpha = .4, size = .6) + #c("dashed", "solid", "dot")
-  scale_fill_manual(values = c( "#E69F00" , "#009E73", "#56B4E9")) +
-  scale_color_manual(values = c( "#E69F00" , "#009E73", "#56B4E9")) +
-  scale_linetype_manual(values = c("solid", "dashed", "dotted")) +
-  labs(title = "Aquatic index", 
-       y = "Density function", 
+  geom_density(aes(fill = AI, color = AI, linetype  = AI), stat = "density", alpha = .5, size = .6) + #c("dashed", "solid", "dot")
+  scale_fill_manual(values = c( "#E69F00" , "#009E73", "#0072B9")) + #009E73
+  scale_color_manual(values = c( "#E69F00" , "#009E73", "#0072B9")) + ##F0E442
+  scale_linetype_manual(values = c("dotted", "dashed", "solid")) +
+  labs(y = "Density function", 
        x = expression(paste(italic("Bd"), " infection prevalence"))) +
     xlim(0, 1) +
   theme_classic()+
@@ -340,13 +339,16 @@ ggplot(dat3, aes(x = p)) +
         axis.text.y = element_text(size = 10, color = "black", family = "sans"),
         axis.title = element_text(size = 11),
         panel.grid = element_blank(),
-        legend.position = "top",
+        #legend.position = "right",
         legend.title.align = 0.5 , 
         legend.title = element_blank(),
-        legend.text = element_text(size = rel(1.5),  family = "sans"),
-        legend.key.size =  unit(0.3, "in"),
-        legend.box.spacing = unit(1, 'cm'),
-        panel.spacing.x = )
+        legend.text = element_text(size = 11,  family = "sans"),
+        legend.position = c(0.85, 0.85),
+        #legend.key = element_rect(size = 6, color = "white"),
+        legend.key.size =  unit(0.3, "in")
+        ##,legend.box.spacing = unit(1, 'cm')
+        #, panel.spacing.y = unit(5, 'cm')
+         )
 
 dev.off()
 
