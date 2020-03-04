@@ -337,8 +337,7 @@ ggplot(dat3, aes(x = p)) +
   theme_classic()+
   theme(axis.text.x = element_text(size = 10, color = "black", family = "sans"), 
         axis.text.y = element_text(size = 10, color = "black", family = "sans"),
-        axis.title.y = element_text(size = 11, color = "black", family = "sans", vjust = NULL),
-        axis.title.x = element_text(size = 11, color = "black", family = "sans", vjust = NULL),
+        axis.title = element_text(size = 11, color = "black", family = "sans"),
         panel.grid = element_blank(),
         legend.position = c(0.85, 0.85),
         legend.title = element_blank(),
