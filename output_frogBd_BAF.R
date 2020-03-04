@@ -333,7 +333,7 @@ ggplot(dat3, aes(x = p)) +
   scale_linetype_manual(values = c("dotted", "dashed", "solid")) +
   labs(y = "Density function", 
        x = expression(paste(italic("Bd"), " infection prevalence"))) +
-    xlim(0, 1) +
+  xlim(0, 1) +
   theme_classic()+
   theme(axis.text.x = element_text(size = 10, color = "black", family = "sans"), 
         axis.text.y = element_text(size = 10, color = "black", family = "sans"),
