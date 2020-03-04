@@ -442,26 +442,20 @@ tiff(
   pointsize = 5.5
 )
 
-(plot_4a <- ggplot(dat4a, aes(x=samples, y=y,  colour=group, group=group,  pch=group)) +
+(plot_4a <- ggplot(dat4a, aes(x = samples, y = y,  colour = group, group = group, pch = group)) + 
   geom_line(alpha = 0.9) +
   geom_point(size = 2.5,  alpha = 0.8) +
-  scale_fill_manual(values = c( "#E69F00" , "#009E73", "#56B4E9"))+
-  scale_color_manual(values = c( "#E69F00" , "#009E73", "#56B4E9"))+
-  labs(x = "", y = "Cumulative detection probability") +
-  #labs(x = "", y = "") + Number of amphibians sampled
-  scale_y_continuous(breaks = seq(0, 1, 0.25), limits = c(0,1)) +
-  scale_x_continuous(breaks = seq(0, 35, 5), limits = c(0,35)) +
-  #labs(shape = "Aquatic index") +
+  scale_shape_manual(values = c(15, 17, 16)) + # 15 = filled square, 17 = filled triangle point-up, 16 = filled circle 
+  scale_fill_manual(values = c( "#E69F00" , "#009E73", "#0072B9")) + #
+  scale_color_manual(values = c( "#E69F00" , "#009E73", "#0072B9")) +
+  labs(x = NULL, y = "Cumulative detection probability") +
+  scale_y_continuous(breaks = seq(0, 1, 0.25), limits = c(0, 1)) +
+  scale_x_continuous(breaks = seq(0, 35, 5), limits = c(0, 35)) +
   geom_hline(yintercept = 0.95, linetype = "dashed") +
   theme_bw( ) +
   ggtitle("Forest cover - 30%") +
-  theme(legend.position = "none",#legend.position = "top",#"none",
-        #legend.title = element_blank(),
-        #legend.text = element_text(size=rel(1.5)),
-        #legend.key.size =  unit(0.25, "in"),
-        #legend.background = element_rect(fill = "white", size = 0.5, 
-        #                                 linetype = "solid", colour = "darkblue"),
-        axis.text = element_text(size = 12, color = "black"), 
+  theme(legend.position = "none",
+        axis.text = element_text(size = 12, color = "black", family = "sans"), 
         panel.grid = element_blank(), 
         plot.title = element_text(size = 12, hjust = 0.0, vjust = 2.12)))
 
@@ -500,13 +494,8 @@ dev.off()
 # Read package
 library(ggpubr)
 
-# Grouping the 2 plots in only one figure
-(figure_5 <- ggarrange(plot_4a, plot_4b, 
-          ncol = 2, nrow = 1, align = "hv", hjust = 100,
-          legend = "top", common.legend = TRUE,
-          font.label = list(size = 14, color = "black", 
-                            face = "bold", family = NULL)))
-  
+ # Exporting figure 4
+
 tiff(
   "./output_figures/fig4.tiff",
   width     = 8,
@@ -516,10 +505,20 @@ tiff(
   pointsize = 5.5
 )
 
+# Grouping the 2 plots in only one figure
+(figure_5 <- ggarrange(plot_4a, plot_4b, 
+                       ncol = 2, nrow = 1, align = "hv", # hjust = 100,
+                       legend = "top", common.legend = TRUE, label.x = "teste",
+                       font.label = list(size = 12, color = "red", 
+                                         family = "sans")))
+
+# Add a common x-axis legend  to the two graphs
 annotate_figure(figure_5,
                bottom = text_grob("Number of amphibians sampled", 
                                   color = "black",
                                   hjust = 2.07, x = 1,  size = 12))
 
 dev.off()
+#
+
 ######   end----
