@@ -497,6 +497,9 @@ tiff(
 
 dev.off()
 
+# Read package
+library(ggpubr)
+
 # Grouping the 2 plots in only one figure
 (figure_5 <- ggarrange(plot_4a, plot_4b, 
           ncol = 2, nrow = 1, align = "hv", hjust = 100,
@@ -504,8 +507,6 @@ dev.off()
           font.label = list(size = 14, color = "black", 
                             face = "bold", family = NULL)))
   
-library(ggpubr)
-
 tiff(
   "./output_figures/fig4.tiff",
   width     = 8,
