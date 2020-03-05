@@ -532,7 +532,7 @@ dat4 <- data.frame (y = c(apply(prob.detec.ai0.f30, 2 , mean),
 
 # Exporting figure 4
 tiff(
-  "./output_figures/fig4y.tiff",
+  "./output_figures/fig4x.tiff",
   width     = 8,
   height    = 4,
   units     = "in",
@@ -563,6 +563,7 @@ ggplot(dat4, aes(x = samples, y = y,  colour = AI, pch = AI)) +
           #legend.spacing.x = unit(1.0, 'cm'),
           legend.text = element_text(size = 12,  family = "sans"),
           legend.title = element_blank(),
+          panel.spacing = unit(3, "lines"),
           #legend.text = element_text(size=rel(1.)),
           #legend.key = element_rect(size = 15),
           #legend.key.size =  unit(0.3, "line"),
