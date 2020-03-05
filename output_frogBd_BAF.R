@@ -429,6 +429,15 @@ dat4b <- data.frame ( y = c(apply(prob.detec.ai0.f100, 2 , mean),
                       samples = rep(1:35, 3),
                       group = rep (c ("AI-0", "AI-1", "AI-2"), each=35))
 
+# Data frame for 30% forest cover
+dat4 <- data.frame (y = c(apply(prob.detec.ai0.f30, 2 , mean), 
+                          apply(prob.detec.ai1.f30, 2 , mean), 
+                          apply(prob.detec.ai2.f30, 2 , mean),
+                          apply(prob.detec.ai0.f100, 2 , mean),
+                          apply(prob.detec.ai1.f100, 2 , mean),
+                          apply(prob.detec.ai2.f100, 2 , mean)),
+                      samples = rep(1:35, 6),
+                      group = rep(c ("AI-0", "AI-1", "AI-2"), times = 2, each = 35))
 
 # Figure 4
 tiff(
@@ -502,11 +511,12 @@ tiff(
 )
 
 # Grouping the 2 plots in only one figure
-(figure_5 <- ggarrange(plot_4a, plot_4b, 
-                       ncol = 2, nrow = 1, align = "hv", # hjust = 100,
-                       legend = "top", common.legend = TRUE, label.x = "teste",
-                       font.label = list(size = 12, color = "red", 
-                                         family = "sans")))
+(figure_5 <- ggarrange(plot_4a, plot_4b, ncol = 2, nrow = 1, 
+                       align = "hv", legend = "top", common.legend = TRUE))
+
+figure_5 + 
+  font("legend.title", color = "blue", face = "bold") +
+  font("legend.text", color = "red")
 
 # Add a common x-axis legend  to the two graphs
 annotate_figure(figure_5,
@@ -516,5 +526,12 @@ annotate_figure(figure_5,
 
 dev.off()
 #
+
+# Data frame for 100% forest cover
+dat4b <- data.frame ( y = c(apply(prob.detec.ai0.f100, 2 , mean), 
+                            apply(prob.detec.ai1.f100, 2 , mean), 
+                            apply(prob.detec.ai2.f100, 2 , mean)),
+                      samples = rep(1:35, 3),
+                      group = rep (c ("AI-0", "AI-1", "AI-2"), each=35))
 
 ######   end----
