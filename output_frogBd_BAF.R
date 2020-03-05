@@ -532,7 +532,7 @@ dat4 <- data.frame (y = c(apply(prob.detec.ai0.f30, 2 , mean),
 
 # Exporting figure 4
 tiff(
-  "./output_figures/fig4x.tiff",
+  "./output_figures/fig4y.tiff",
   width     = 8,
   height    = 4,
   units     = "in",
@@ -547,18 +547,23 @@ ggplot(dat4, aes(x = samples, y = y,  colour = AI, pch = AI)) +
                 labeller = as_labeller(c(forest30 = "Forest cover - 30%", 
                                          forest100 = "Forest cover - 100%"))) +
     scale_shape_manual(values = c(15, 17, 16)) +
-    scale_fill_manual(values = c( "#E69F00" , "#009E73", "#0072B9")) + #
-    scale_color_manual(values = c( "#E69F00" , "#009E73", "#0072B9"))  +
+    scale_fill_manual(values = c( "#E69F00" , "#009E73", "#0072B9")) + 
+    scale_color_manual(values = c( "#E69F00" , "#009E73", "#0072B9")) +
     scale_y_continuous(breaks = seq(0, 1, 0.25), limits = c(0, 1)) +
     scale_x_continuous(breaks = seq(0, 35, 5), limits = c(0, 35)) +
     geom_hline(yintercept = 0.95, linetype = "dashed") +
     labs(x = "Number of amphibians sampled", y = "Cumulative detection probability") +
     theme_bw() +
     theme(axis.text = element_text(size = 10, color = "black", family = "sans"),
-          axis.title = element_text(size = 10, family = "sans"),
-          strip.text.x = element_text(size = 10, color = "black", family = "sans"),
+          axis.title = element_text(size = 11, family = "sans"),
+          strip.text.x = element_text(size = 11, color = "black", family = "sans"),
           strip.background = element_blank(),
           legend.position = "top",
+          legend.spacing.x = unit(1.0, 'cm'),
+          #legend.text = element_text(size = 11,  family = "sans"),
+          legend.title = element_blank(),
+          legend.text = element_text(size=rel(1.)),
+          legend.key.size =  unit(0.3, "in"),
           panel.grid = element_blank())
     
 dev.off()
