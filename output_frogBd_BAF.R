@@ -544,21 +544,22 @@ ggplot(dat4, aes(x = samples, y = y,  colour = AI, pch = AI)) +
     geom_line(alpha = 0.9) +
     geom_point(size = 2.5,  alpha = 0.8) +
     facet_wrap( ~ group, nrow = 1, scales = "fixed", strip.position = "top") +
+    scale_fill_manual(values = c( "#E69F00" , "#009E73", "#0072B9")) + #
+    scale_color_manual(values = c( "#E69F00" , "#009E73", "#0072B9"))  +
+    scale_y_continuous(breaks = seq(0, 1, 0.25), limits = c(0, 1)) +
+    scale_x_continuous(breaks = seq(0, 35, 5), limits = c(0, 35)) +
+    geom_hline(yintercept = 0.95, linetype = "dashed") +
     labs(x = "Number of amphibians sampled", y = "Cumulative detection probability") +
     theme_bw() +
     theme(
-      panel.grid = element_blank())
+    panel.grid = element_blank())
     
-
 dev.off()
 #
 
 scale_shape_manual(values = c(15, 17, 16)) + # 15 = filled square, 17 = filled triangle point-up, 16 = filled circle 
-    scale_fill_manual(values = c( "#E69F00" , "#009E73", "#0072B9")) + #
-    scale_color_manual(values = c( "#E69F00" , "#009E73", "#0072B9")) +
-    labs(x = NULL, y = "Cumulative detection probability") +
-    scale_y_continuous(breaks = seq(0, 1, 0.25), limits = c(0, 1)) +
-    scale_x_continuous(breaks = seq(0, 35, 5), limits = c(0, 35)) +
+  
+   
     geom_hline(yintercept = 0.95, linetype = "dashed") +
     theme_bw( ) +
     ggtitle("Forest cover - 30%") +
