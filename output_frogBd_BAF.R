@@ -430,8 +430,6 @@ dat4b <- data.frame ( y = c(apply(prob.detec.ai0.f100, 2 , mean),
                       group = rep (c ("AI-0", "AI-1", "AI-2"), each=35))
 
 
-ai.colour <-c( "#E69F00" , "#009E73", "#56B4E9")
-
 # Figure 4
 tiff(
   "./output_figures/fig4a.tiff",
@@ -442,7 +440,7 @@ tiff(
   pointsize = 5.5
 )
 
-(plot_4a <- ggplot(dat4a, aes(x = samples, y = y,  colour = group, group = group, pch = group)) + 
+(plot_4a <- ggplot(dat4a, aes(x = samples, y = y,  colour = group, pch = group)) + 
   geom_line(alpha = 0.9) +
   geom_point(size = 2.5,  alpha = 0.8) +
   scale_shape_manual(values = c(15, 17, 16)) + # 15 = filled square, 17 = filled triangle point-up, 16 = filled circle 
@@ -471,31 +469,29 @@ tiff(
 )
 
 
-(plot_4b <- ggplot(dat4b, aes(x=samples, y=y, colour=group, group=group,  pch=group)) +
+(plot_4b <- ggplot(dat4b, aes(x = samples, y = y, colour = group, pch=group)) +
   geom_line(alpha = 0.9) +
   geom_point(size = 2.5, alpha = 0.8) +
-  scale_fill_manual(values = c( "#E69F00" , "#009E73", "#56B4E9"))+
-  scale_color_manual(values = c( "#E69F00" , "#009E73", "#56B4E9"))+
+    scale_shape_manual(values = c(15, 17, 16)) +
+  scale_fill_manual(values = c( "#E69F00" , "#009E73", "#0072B9"))+
+  scale_color_manual(values = c( "#E69F00" , "#009E73", "#0072B9"))+
   scale_y_continuous(breaks = seq(0, 1, 0.25), limits = c(0,1)) +
   scale_x_continuous(breaks = seq(0, 35, 5), limits = c(0,35)) +
-  labs(shape="Aquatic index") +
   geom_hline(yintercept = 0.95, linetype = "dashed") +
   theme_bw( ) +
   ggtitle("Forest cover - 100%")+
   theme(legend.position = "none",
-        axis.text = element_text(size = 12, color = "black"), 
-        axis.title = element_blank(),
-        panel.grid = element_blank(), 
-        plot.title = element_text(size = 12, hjust = 1, vjust = 2.12)))
-
+          axis.text = element_text(size = 12, color = "black", family = "sans"), 
+          axis.title = element_blank(),
+          panel.grid = element_blank(), 
+          plot.title = element_text(size = 12, hjust = 0.0, vjust = 2.12)))
 
 dev.off()
 
 # Read package
 library(ggpubr)
 
- # Exporting figure 4
-
+# Exporting figure 4
 tiff(
   "./output_figures/fig4.tiff",
   width     = 8,
