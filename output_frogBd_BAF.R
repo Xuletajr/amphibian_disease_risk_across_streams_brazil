@@ -532,7 +532,7 @@ dat4 <- data.frame (y = c(apply(prob.detec.ai0.f30, 2 , mean),
 
 # Exporting figure 4
 tiff(
-  "./output_figures/fig4x.tiff",
+  "./output_figures/fig04.tiff",
   width     = 8,
   height    = 4,
   units     = "in",
@@ -555,17 +555,17 @@ ggplot(dat4, aes(x = samples, y = y,  colour = AI, pch = AI)) +
     labs(x = "Number of amphibians sampled", y = "Cumulative detection probability") +
     theme_bw() +
     theme(axis.text = element_text(size = 10, color = "black", family = "sans"),
-          axis.title = element_text(size = 12, family = "sans"),
-          strip.text.x = element_text(size = 12, color = "black", family = "sans"),
+          axis.title.x = element_text(size = 11, family = "sans", vjust = -0.5 ), 
+          axis.title.y = element_text(size = 11, family = "sans", vjust = 1.5 ),
+          strip.text.x = element_text(size = 11, color = "black", family = "sans"),
           strip.background = element_blank(),
           legend.position = "top",
-          #legend.spacing.x = unit(1.0, 'cm'),
           legend.text = element_text(size = 12,  family = "sans"),
           legend.title = element_blank(),
           panel.spacing = unit(2, "lines"),
           legend.box.background = element_rect(colour = "black"),
           legend.box.spacing = unit(0.5, "lines"),
-          legend.key = element_rect(fill = "gray90"),
+          #legend.key = element_rect(fill = "gray90"),
           #legend.direction = "vertical",
           #legend.text = element_text(size=rel(1.)),
           #legend.key = element_rect(size = 15),
