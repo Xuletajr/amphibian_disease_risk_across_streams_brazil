@@ -554,16 +554,18 @@ ggplot(dat4, aes(x = samples, y = y,  colour = AI, pch = AI)) +
     geom_hline(yintercept = 0.95, linetype = "dashed") +
     labs(x = "Number of amphibians sampled", y = "Cumulative detection probability") +
     theme_bw() +
+    guides(color = guide_legend(override.aes = list(size = 4))) +
     theme(axis.text = element_text(size = 10, color = "black", family = "sans"),
-          axis.title = element_text(size = 11, family = "sans"),
-          strip.text.x = element_text(size = 11, color = "black", family = "sans"),
+          axis.title = element_text(size = 12, family = "sans"),
+          strip.text.x = element_text(size = 12, color = "black", family = "sans"),
           strip.background = element_blank(),
           legend.position = "top",
-          legend.spacing.x = unit(1.0, 'cm'),
-          #legend.text = element_text(size = 11,  family = "sans"),
+          #legend.spacing.x = unit(1.0, 'cm'),
+          legend.text = element_text(size = 12,  family = "sans"),
           legend.title = element_blank(),
-          legend.text = element_text(size=rel(1.)),
-          legend.key.size =  unit(0.3, "in"),
+          #legend.text = element_text(size=rel(1.)),
+          #legend.key = element_rect(size = 15),
+          #legend.key.size =  unit(0.3, "line"),
           panel.grid = element_blank())
     
 dev.off()
