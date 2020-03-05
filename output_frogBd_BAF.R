@@ -471,7 +471,7 @@ tiff(
 (plot_4b <- ggplot(dat4b, aes(x = samples, y = y, colour = group, pch=group)) +
   geom_line(alpha = 0.9) +
   geom_point(size = 2.5, alpha = 0.8) +
-    scale_shape_manual(values = c(15, 17, 16)) +
+  scale_shape_manual(values = c(15, 17, 16)) +
   scale_fill_manual(values = c( "#E69F00" , "#009E73", "#0072B9"))+
   scale_color_manual(values = c( "#E69F00" , "#009E73", "#0072B9"))+
   scale_y_continuous(breaks = seq(0, 1, 0.25), limits = c(0,1)) +
@@ -532,7 +532,7 @@ dat4 <- data.frame (y = c(apply(prob.detec.ai0.f30, 2 , mean),
 
 # Exporting figure 4
 tiff(
-  "./output_figures/fig4a.tiff",
+  "./output_figures/fig4x.tiff",
   width     = 8,
   height    = 4,
   units     = "in",
@@ -543,7 +543,10 @@ tiff(
 ggplot(dat4, aes(x = samples, y = y,  colour = AI, pch = AI)) + 
     geom_line(alpha = 0.9) +
     geom_point(size = 2.5,  alpha = 0.8) +
-    facet_wrap( ~ group, nrow = 1, scales = "fixed", strip.position = "top") +
+    facet_wrap( ~ group, nrow = 1, scales = "fixed", strip.position = "top",
+                labeller = as_labeller(c(forest30 = "Forest cover - 30%", 
+                                         forest100 = "Forest cover - 100%"))) +
+    scale_shape_manual(values = c(15, 17, 16)) +
     scale_fill_manual(values = c( "#E69F00" , "#009E73", "#0072B9")) + #
     scale_color_manual(values = c( "#E69F00" , "#009E73", "#0072B9"))  +
     scale_y_continuous(breaks = seq(0, 1, 0.25), limits = c(0, 1)) +
@@ -551,8 +554,12 @@ ggplot(dat4, aes(x = samples, y = y,  colour = AI, pch = AI)) +
     geom_hline(yintercept = 0.95, linetype = "dashed") +
     labs(x = "Number of amphibians sampled", y = "Cumulative detection probability") +
     theme_bw() +
-    theme(
-    panel.grid = element_blank())
+    theme(axis.text = element_text(size = 10, color = "black", family = "sans"),
+          axis.title = element_text(size = 10, family = "sans"),
+          strip.text.x = element_text(size = 10, color = "black", family = "sans"),
+          strip.background = element_blank(),
+          legend.position = "top",
+          panel.grid = element_blank())
     
 dev.off()
 #
