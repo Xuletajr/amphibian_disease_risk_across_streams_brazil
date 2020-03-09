@@ -266,13 +266,13 @@ round(out_bd$q2.5$prev.AI2,  3)
 round(out_bd$q97.5$prev.AI2, 3)
 
 # Infection intensity of terrestrial-breeding species (AI-0) 
-out_bd$mean$int.AI0; out_bd$q2.5$int.AI0; out_bd$q97.5$int.AI0
+round(out_bd$mean$int.AI0, 3); round(out_bd$q2.5$int.AI0, 3); round(out_bd$q97.5$int.AI0, 3)
 
 # Infection intensity of arboreal species with aquatic larvae (AI-1) 
-out_bd$mean$int.AI1; out_bd$q2.5$int.AI1; out_bd$q97.5$int.AI1
+round(out_bd$mean$int.AI1, 3); round(out_bd$q2.5$int.AI1, 3); round(out_bd$q97.5$int.AI1, 3)
 
 # Infection intensity of terrestrial species with aquatic larvae (AI-2)
-out_bd$mean$int.AI2; out_bd$q2.5$int.AI2; out_bd$q97.5$int.AI2  
+round(out_bd$mean$int.AI2, 3); round(out_bd$q2.5$int.AI2, 3); round(out_bd$q97.5$int.AI2, 3)  
 
 # The differences between parameters related to aquatic index at each MCMC iteration 
 # following Ruiz-Guti?rrez et al. (2010). We computed the proportion of iterations 
