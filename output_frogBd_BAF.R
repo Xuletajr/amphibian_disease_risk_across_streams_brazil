@@ -281,29 +281,29 @@ round(out_bd$mean$int.AI2, 3); round(out_bd$q2.5$int.AI2, 3); round(out_bd$q97.5
 
 # Difference in the prevalence parameter between AI
 # Prevalence: AI-0 vs AI-1 - Pr(b0 > b1)
-mean(out_bd$sims.list$b0 > out_bd$sims.list$b1)
-length(which(out_bd$sims.list$b0 - out_bd$sims.list$b1 > 0))/3000
+round(mean(out_bd$sims.list$b0 > out_bd$sims.list$b1), 3)
+round(length(which(out_bd$sims.list$b0 - out_bd$sims.list$b1 > 0))/3000, 3)
 
 # Prevalence: AI-0 vs AI-2 - Pr(b0 > b2)
-mean(out_bd$sims.list$b0 > out_bd$sims.list$b2)
-length(which(out_bd$sims.list$b0 - out_bd$sims.list$b2 > 0))/3000
+round(mean(out_bd$sims.list$b0 > out_bd$sims.list$b2), 3)
+round(length(which(out_bd$sims.list$b0 - out_bd$sims.list$b2 > 0))/3000, 3)
 
 # Prevalence: AI-1 vs AI-2 - Pr(b2 > b1)
-mean(out_bd$sims.list$b2 > out_bd$sims.list$b1)
-length(which(out_bd$sims.list$b2 - out_bd$sims.list$b1 > 0))/3000
+round(mean(out_bd$sims.list$b2 > out_bd$sims.list$b1), 3)
+round(length(which(out_bd$sims.list$b2 - out_bd$sims.list$b1 > 0))/3000, 3)
 
 # Difference in the intensity parameter between AI
 # Infection intensity: AI-0 vs AI-1 - Pr(b0 > b1)
-mean(out_bd$sims.list$int.AI0 < out_bd$sims.list$int.AI1)
-length(which(out_bd$sims.list$int.AI0 - out_bd$sims.list$int.AI1 > 0))/3000
+round(mean(out_bd$sims.list$int.AI0 < out_bd$sims.list$int.AI1), 3)
+round(length(which(out_bd$sims.list$int.AI0 - out_bd$sims.list$int.AI1 > 0))/3000, 3)
 
 # Infection intensity: AI-0 vs AI-2 - Pr(b0 > b2)
-mean(out_bd$sims.list$int.AI0 < out_bd$sims.list$int.AI2)
-length(which(out_bd$sims.list$int.AI0 - out_bd$sims.list$int.AI2 > 0))/3000
+round(mean(out_bd$sims.list$int.AI0 < out_bd$sims.list$int.AI2), 3)
+round(length(which(out_bd$sims.list$int.AI0 - out_bd$sims.list$int.AI2 > 0))/3000, 3)
 
 # Infection intensity: AI-2 vs AI-1 - Pr(b2 > b1)
-mean(out_bd$sims.list$int.AI2 > out_bd$sims.list$int.AI1)
-length(which(out_bd$sims.list$int.AI2 - out_bd$sims.list$int.AI1 > 0))/3000
+round(mean(out_bd$sims.list$int.AI2 > out_bd$sims.list$int.AI1), 3)
+round(length(which(out_bd$sims.list$int.AI2 - out_bd$sims.list$int.AI1 > 0))/3000, 3)
 
 ### FIGURE 3 MANUSCRIPT
 # Putting prevalence data in a data frame
