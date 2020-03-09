@@ -265,6 +265,12 @@ round(out_bd$mean$prev.AI2,  3)
 round(out_bd$q2.5$prev.AI2,  3)
 round(out_bd$q97.5$prev.AI2, 3)
 
+# Forest effect - prevalence
+round(out_bd$mean$b3, 3); round(out_bd$q2.5$b3, 3); round(out_bd$q97.5$b3, 3)
+
+# round(out_bd$q25$b3, 2); round(out_bd$q75$b3, 2); round(out_bd$sd$b3, 2)
+length(which(out_bd$sims.list$b3 > 0))/3000 # 
+
 # Infection intensity of terrestrial-breeding species (AI-0) 
 round(out_bd$mean$int.AI0, 3); round(out_bd$q2.5$int.AI0, 3); round(out_bd$q97.5$int.AI0, 3)
 
@@ -346,12 +352,6 @@ ggplot(dat3, aes(x = p)) +
 
 dev.off()
 
-# Forest effect - prevalence
-round(out_bd$mean$b3, 3); round(out_bd$q2.5$b3, 3); round(out_bd$q97.5$b3, 3)
-
-# round(out_bd$q25$b3, 2); round(out_bd$q75$b3, 2); round(out_bd$sd$b3, 2)
-length(which(out_bd$sims.list$b3 > 0))/3000 # 
-
 ######### ######### ######### ######### ######### ######### #########
 ######### Probability of detecting Bd in a population
 #########          Two scenarios of forest cover
@@ -426,7 +426,7 @@ dat4 <- data.frame (y = c(apply(prob.detec.ai0.f30, 2 , mean),
                     AI = rep(c ("AI-0", "AI-1", "AI-2"), times = 2, each = 35),
                     group = rep(c ("forest30", "forest100"), each = 105))
 
-
+dat4
 
 # Exporting figure 4
 tiff(
