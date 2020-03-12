@@ -319,7 +319,8 @@ sp.params = c("mean.occ", "occ.rate",
               "b0", "b1", "b2", "b3",
               "prev.AI0", "prev.AI1", "prev.AI2",
               "sd.p", "sd", "sd.var",
-              "n0", "n1", "n2"
+              "n0", "n1", "n2",
+              "Ncols0", "Ncols1", "Ncols2"
 )
 
 # Specify the initial values
