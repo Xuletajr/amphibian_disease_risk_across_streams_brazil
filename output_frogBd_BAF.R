@@ -122,7 +122,7 @@ dat2 <- data.frame(occ.mean = c(occ.mean[,2], occ.mean[,1],  occ.mean[,3]),
 dat2
 
 tiff(
-  "./output_figures/fig02.tiff",
+  "./output_figures/fig02b.tiff",
   width     = 6.5,
   height    = 3.5,
   units     = "in",
