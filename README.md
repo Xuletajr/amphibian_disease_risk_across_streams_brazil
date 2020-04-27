@@ -17,12 +17,13 @@ __*bd_occupancy_prevalence_Brazil_Atlantic_Forest.R*__ - Cotains R code to impor
 __*output_frogBd_BAF.R*__ - Contains R code to estimate posterior summary statistics and to create figures. 
 
 ## Data
+The rows are the 49 sampled sites (streams). The number of individuals captured per stream ranged from 1 to 10 amphibians (columns). We followed the protocol described by Boyle et al. (2004) and extracted *Bd* DNA from each swab using PrepMan Ultra® (Applied Biosystems).  We quantified *Bd* infection loads (zoospore genomic equivalents: ZGE) in each swab using qPCR analysis with TaqMan assays (Applied Biosystems). Each plate contained *Bd* standards of 0.1, 1, 10, 100, and 1000 ZGE from strain CLFT 159. The samples that had *Bd* load equal to or greater than one were treated as *Bd*-positive (Kriger et al. 2006, 2007).
 
 ### *Bd* presence
-__*bd_pres.txt*__ -
+__*bd_pres.txt*__ - contains the data of *Bd* occurrence in Brazilian Atlantic Forest streams. Presence = 1; Absence = 0; NA's = not sampled.
 
 ### *Bd* load
-__*bd_load.txt*__ -
+__*bd_load.txt*__ - contains the data of *Bd* infection intensity (load) in Brazilian Atlantic Forest streams. Load = > 0 (ZGE); Absence = 0; NA's = not sampled.
 
 ### Aquatic index
 __*bd_AI0.txt*__ -
@@ -30,9 +31,6 @@ __*bd_AI0.txt*__ -
 __*bd_AI0.txt*__ - 
 
 __*bd_AI0.txt*__ - 
-
-### Survey date
-__*date_bd.txt*__ - 
 
 ### Habitat covariates
 habitat_covariates.txt - contains habitat covariate information for each site. 
@@ -47,6 +45,7 @@ habitat_covariates.txt - contains habitat covariate information for each site.
 9. __“edge_forest”__ - is the forest edge (m) within a buffer of 200 m radius
 
 ## References
-- DiRenzo GV, Grant EHC, Longo AV, et al (2018) Imperfect pathogen detection from non-invasive skin swabs biases disease inference. Methods Ecol Evol 9:380–389. doi: 10.1111/2041-210X.12868
-- Miller DAW, Talley BL, Lips KR, Campbell Grant EH (2012) Estimating patterns and drivers of infection prevalence and intensity when detection is imperfect and sampling error occurs. Methods Ecol Evol 3:850–859. doi: 10.1111/j.2041-210X.2012.00216.x
-- Ribeiro JW, Siqueira T, Brejão GL, Zipkin EF (2018) Effects of agriculture and topography on tropical amphibian species and communities. Ecol Appl 28:1554–1564. doi: 10.1002/eap.1741
+- Boyle DG, Boyle DB, Olsen V et al (2004) Rapid quantitative detection of chytridiomycosis (Batrachochytrium dendrobatidis) in amphibian samples using real-time Taqman PCR assay. Dis Aquat Organ 60:141–148. https://doi.org/10.3354/dao060141
+- DiRenzo GV, Grant EHC, Longo AV, et al (2018) Imperfect pathogen detection from non-invasive skin swabs biases disease inference. Methods Ecol Evol 9:380–389. doi: https://doi.org/10.1111/2041-210X.12868
+- Miller DAW, Talley BL, Lips KR, Campbell Grant EH (2012) Estimating patterns and drivers of infection prevalence and intensity when detection is imperfect and sampling error occurs. Methods Ecol Evol 3:850–859. doi: https://doi.org/10.1111/j.2041-210X.2012.00216.x
+- Ribeiro JW, Siqueira T, Brejão GL, Zipkin EF (2018) Effects of agriculture and topography on tropical amphibian species and communities. Ecol Appl 28:1554–1564. doi: https://doi.org/10.1002/eap.1741
