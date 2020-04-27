@@ -26,11 +26,13 @@ __*bd_pres.txt*__ - contains the data of *Bd* occurrence in Brazilian Atlantic F
 __*bd_load.txt*__ - contains the data of *Bd* infection intensity (load) in Brazilian Atlantic Forest streams. Load = > 0 (ZGE); Absence = 0; NA's = not sampled.
 
 ### Aquatic index
-__*bd_AI0.txt*__ -
+Aquatic index is a measure of amphibian water dependency and has been used to relate the probability a species will be infected by Bd in amphibian communities (Lips et al. 2003; Becker et al. 2014; Mesquita et al. 2017). We classified species into three distinct groups:
 
-__*bd_AI0.txt*__ - 
+__*bd_AI0.txt*__ - terrestrial species with terrestrial eggs (AI-0). 
 
-__*bd_AI0.txt*__ - 
+__*bd_AI1.txt*__ - arboreal species with an aquatic larval phase (AI-1).
+
+__*bd_AI2.txt*__ - terrestrial species with an aquatic larval phase (AI-2).
 
 ### Habitat covariates
 habitat_covariates.txt - contains habitat covariate information for each site. 
