@@ -37,7 +37,7 @@ __*bd_pres.txt*__ - contains the data of *Bd* occurrence in Brazilian Atlantic F
 __*bd_load.txt*__ - contains the data of *Bd* infection intensity (load) in Brazilian Atlantic Forest streams. Load = > 0 (ZGE); Absence = 0; NA's = not sampled.
 
 ### Aquatic index
-Aquatic index is a measure of amphibian water dependency and has been used to relate the probability a species will be infected by Bd in amphibian communities (Lips et al. 2003; Becker et al. 2014; Mesquita et al. 2017). We classified species into three distinct groups:
+Aquatic index is a measure of amphibian water dependency and has been used to relate the probability a species will be infected by Bd in amphibian communities (Becker et al. 2014; Mesquita et al. 2017). We classified species into three distinct groups:
 
 __*bd_AI0.txt*__ - terrestrial species with terrestrial eggs (AI-0). 
 
@@ -58,10 +58,14 @@ habitat_covariates.txt - contains habitat covariate information for each site.
 9. __“edge_forest”__ - is the forest edge (m) within a buffer of 200 m radius
 
 ## References
+- Becker CG, Rodriguez D, Toledo LF et al (2014) Partitioning the net effect of host diversity on an emerging amphibian pathogen. Proc
+R Soc B 281:20141796. https://doi.org/10.1098/rspb.2014.1796
 - Boyle DG, Boyle DB, Olsen V et al (2004) Rapid quantitative detection of chytridiomycosis (Batrachochytrium dendrobatidis) in amphibian samples using real-time Taqman PCR assay. Dis Aquat Organ 60:141–148. https://doi.org/10.3354/dao060141
 - DiRenzo GV, Grant EHC, Longo AV, et al (2018) Imperfect pathogen detection from non-invasive skin swabs biases disease inference. Methods Ecol Evol 9:380–389. doi: https://doi.org/10.1111/2041-210X.12868
 - Kriger KM, Ashton KJ, Hines HB, Hero J (2007) On the biological relevance of a single Batrachochytrium dendrobatidis zoospore:
 a reply to Smith (2007). Dis Aquat Organ 73:257–260. https://doi.org/10.3354/dao073257
 - Kriger KM, Hines HB, Hyatt AD et al (2006) Techniques for detecting chytridiomycosis in wild frogs: comparing histology with realtime Taqman PCR. Dis Aquat Organ 71:141–148. https://doi.org/10.3354/dao071141
+- Mesquita AFC, Lambertini C, Lyra M et al (2017) Low resistance to chytridiomycosis in direct-developing amphibians. Sci Rep
+7:16605. https://doi.org/10.1038/s41598-017-16425-y
 - Miller DAW, Talley BL, Lips KR, Campbell Grant EH (2012) Estimating patterns and drivers of infection prevalence and intensity when detection is imperfect and sampling error occurs. Methods Ecol Evol 3:850–859. doi: https://doi.org/10.1111/j.2041-210X.2012.00216.x
 - Ribeiro JW, Siqueira T, Brejão GL, Zipkin EF (2018) Effects of agriculture and topography on tropical amphibian species and communities. Ecol Appl 28:1554–1564. doi: https://doi.org/10.1002/eap.1741
