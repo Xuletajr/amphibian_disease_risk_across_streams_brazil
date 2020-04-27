@@ -47,5 +47,8 @@ habitat_covariates.txt - contains habitat covariate information for each site.
 ## References
 - Boyle DG, Boyle DB, Olsen V et al (2004) Rapid quantitative detection of chytridiomycosis (Batrachochytrium dendrobatidis) in amphibian samples using real-time Taqman PCR assay. Dis Aquat Organ 60:141–148. https://doi.org/10.3354/dao060141
 - DiRenzo GV, Grant EHC, Longo AV, et al (2018) Imperfect pathogen detection from non-invasive skin swabs biases disease inference. Methods Ecol Evol 9:380–389. doi: https://doi.org/10.1111/2041-210X.12868
+Kriger KM, Ashton KJ, Hines HB, Hero J (2007) On the biological relevance of a single Batrachochytrium dendrobatidis zoospore:
+a reply to Smith (2007). Dis Aquat Organ 73:257–260. https://doi.org/10.3354/dao073257
+Kriger KM, Hines HB, Hyatt AD et al (2006) Techniques for detecting chytridiomycosis in wild frogs: comparing histology with realtime Taqman PCR. Dis Aquat Organ 71:141–148. https://doi.org/10.3354/dao071141
 - Miller DAW, Talley BL, Lips KR, Campbell Grant EH (2012) Estimating patterns and drivers of infection prevalence and intensity when detection is imperfect and sampling error occurs. Methods Ecol Evol 3:850–859. doi: https://doi.org/10.1111/j.2041-210X.2012.00216.x
 - Ribeiro JW, Siqueira T, Brejão GL, Zipkin EF (2018) Effects of agriculture and topography on tropical amphibian species and communities. Ecol Appl 28:1554–1564. doi: https://doi.org/10.1002/eap.1741
