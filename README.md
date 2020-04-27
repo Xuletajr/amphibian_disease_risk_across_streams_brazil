@@ -2,9 +2,9 @@
 
 ### José W. Ribeiro Jr, Tadeu Siqueira, Graziella V. DiRenzo, Carolina Lambertini, Mariana L. Lyra, Luís F. Toledo, Célio F. B. Haddad, C. Guilherme Becker
 
-### Oecologia (submitted)
+### Oecologia
 
-### Code DOI:
+### Code DOI: https://doi.org/10.1007/s00442-020-04646-4
 
 ### Please contact the first author for questions about the code or data: José W. Ribeiro Jr (jwribeirojunior@gmail.com)
 __________________________________________________________________________________________________________________________________________
